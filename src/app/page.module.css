@@ -54,9 +54,32 @@
   border-radius: 8px; /* deixa a borda arredondada */
   cursor: pointer; /* mostra que é clicável */
   display: flex; /* o elemento vira um container flex o que permite controlar o posicionamento interno dos filhos */
-  align-items: center; /* controlea o alinhamento vertical dos itens */
+  align-items: center; /* controla o alinhamento vertical dos itens */
   justify-content: center; /* controla o alinhamento horizontal dos itens */
   color: white;
   font-weight: bold; /* negrito */
+  font-family: var(--font-roboto), sans-serif /* mudando a fonte para roboto */
   font-size: 14px; /* tamanho do texto */
+}
+
+.logoContainer {
+position: absolute;
+top: 10px;
+left: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 5px; /* espaço entre ícone e texto */
+}
+
+.logoIcon {
+  width: 5rem; /* largura */
+  height: 5rem; /* altura */
+}
+
+.logoContainer span {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  font-family: var(--font-roboto), sans-serif /* mudando a fonte para roboto */
 }

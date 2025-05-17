@@ -28,7 +28,19 @@ export default function ProfilePage() {
 
 
     </main>
-
+          {/* Primeira seção com retângulos */}
+          <main> {/* tag semântica para o conteúdo principal */}
+            <div className={styles.retanguloTopo}></div> {/* aplicar a classe importada */}
+            <div className={styles.retanguloEntrar}>
+              Entrar
+            </div> {/* = division: /agrupa elementos e aplica estilo de css a eles*/}
+          </main>
+    
+          {/* Segunda seção com icone do GitFica*/}
+          <div className={styles.logoContainer}>
+            <img src="gitfica_icon.png" alt= "GitFica Logo" className={styles.logoIcon} />
+            <span>GitFica</span>
+            </div>
 </>
   )
 

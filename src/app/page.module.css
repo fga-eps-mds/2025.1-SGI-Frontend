@@ -58,7 +58,7 @@
   justify-content: center; /* controla o alinhamento horizontal dos itens */
   color: white;
   font-weight: bold; /* negrito */
-  font-family: var(--font-roboto), sans-serif /* mudando a fonte para roboto */
+  font-family: var(--font-roboto), sans-serif; /* mudando a fonte para roboto */
   font-size: 14px; /* tamanho do texto */
 }
 

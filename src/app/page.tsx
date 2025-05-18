@@ -6,12 +6,6 @@ export default function Home() { // definir o componente principal da página
   return (
     <>
 
-      {/* Segunda seção com icone do GitFica*/}
-      <div className={styles.logoContainer}>
-        <img src="gitfica_icon.png" alt= "GitFica Logo" className={styles.logoIcon} />
-        <span>GitFica</span>
-        </div>
-
       {/* Terceira seção com login do GitHub */}
       <div className={styles.container}>
         <div className={styles.card}>

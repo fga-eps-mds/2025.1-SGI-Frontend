@@ -11,6 +11,7 @@ body {
   flex-direction: column;
   padding: 2rem;
   gap: 2rem;
+  margin-top: 70px;
 }
 
 /* Informações do usuário */

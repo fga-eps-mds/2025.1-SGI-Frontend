@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Modal from '../Componentes/Modal/page';
+import Modal from '../../components/Modal/page';
 import styles from './profile.module.css';
 
 export default function ProfilePage() {

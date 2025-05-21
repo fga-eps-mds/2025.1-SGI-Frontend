@@ -1,43 +1,27 @@
-
-
-/* Topo fixo */
-.retanguloTopo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%; /* corrigido de 100vw para 100% */
+/* troquei o retangulo topo por um 'header', a ideia é fortalecer alem da SEO, tambem tornar o codigo menos engessado*/
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
   height: 100px;
   background-color: #2B009D;
+  position: relative;
 }
 
-/* Botão "Entrar" fixo */
-.retanguloEntrar {
-  position: fixed;
-  top: 31.5px; /* corrigido: adicionada unidade */
-  right: 40px;  /* corrigido: adicionada unidade */
-  width: 100px;
-  height: 37px;
-  background-color: #5F29F4;
-  border-radius: 8px;
-  cursor: pointer;
+/* (logo+ menu) */
+.leftContainer {
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: bold;
-  font-family: var(--font-roboto), sans-serif;
-  font-size: 14px;
+  gap: 40px;
 }
 
-/* Logo */
+
 .logoContainer {
-  position: absolute;
-  top: 10px;
-  left: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 5px;
+  margin-right: 60px;
 }
 
 .logoIcon {
@@ -50,4 +34,73 @@
   font-weight: bold;
   color: white;
   font-family: var(--font-roboto), sans-serif;
+}
+
+/* barra de navegação responsiva */
+.navBar ul {
+  display: flex;
+  gap: 50px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLinks a {
+  color: white;
+  font-weight: 500;
+  font-family: var(--font-roboto), sans-serif;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.navLinks a:hover {
+  color: #cccccc;
+}
+
+/* (notificação + botão entrar ou perfil) */
+.rightContainer {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  color: white;
+  font-family: var(--font-roboto), sans-serif;
+}
+
+
+.profileContainer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+
+
+.profileContainer:hover {
+  opacity: 0.8;
+}
+
+.profileText {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.enterButton {
+  width: 100px;
+  height: 37px;
+  background-color: #5F29F4;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 25px;
+  text-decoration: none;
+}
+
+.icone:hover{
+  cursor:pointer;
 }

@@ -11,11 +11,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (code == 'CODIGO_TESTE') {
     const fakeJwt = 'FAKE.JWT.TOKEN'
-    return res.redirect('/profile')
+    const username = 'TESTE_USER'
+    const email = 'TESTE_EMAIL'
+    return res.redirect(`/profile?token=${fakeJwt}&username=${encodeURIComponent(username)}&email=${encodeURIComponent(email)}`)
   }
 
   try {
-    // Chamar seu Django em /callback
+    // Chamar backend
     const djangoRes = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/callback?code=${code}`,
       {
@@ -33,14 +35,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const data = await djangoRes.json();
     const jwt = data.access_token;
+    const username = data.username;
+    const email = data.email;
 
     if (!jwt) {
       return res.status(500).json({ error: 'Token JWT não retornado pelo backend' });
     }
 
-    res.status(200).json({ token: jwt });
+    return res.redirect(
+        `/profile?token=${jwt}&username=${encodeURIComponent(username)}&email=${encodeURIComponent(email)}`
+    );
 
-    res.redirect('/profile');
   } catch (err: any) {
     console.error('[Callback GitHub Error]:', err.message || err);
     res.status(500).json({ error: 'Erro no processo de autenticação' });

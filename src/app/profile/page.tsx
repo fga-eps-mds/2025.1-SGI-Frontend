@@ -1,11 +1,32 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from '../../components/Modal/page';
 import styles from './profile.module.css';
+import { useSearchParams} from 'next/navigation'; 
 
 export default function ProfilePage() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [user, setUser] = useState<{ username: string; email: string } | null>(null);
+
+   const searchParams = useSearchParams();
+
+  useEffect(() => {
+
+    if (!searchParams) return;
+
+    const token = searchParams.get('token');
+    const username = searchParams.get('username');
+    const email = searchParams.get('email');
+
+    if (token && username && email) {
+      localStorage.setItem('jwt', token);
+      localStorage.setItem('username', username);
+      localStorage.setItem('email', email);
+      
+      setUser({ username, email });
+    }
+  }, []);
 
   const DeleteAccount = () => {
     console.log('Conta apagada!');
@@ -26,9 +47,9 @@ export default function ProfilePage() {
             alt="Foto de Perfil"
             className={styles.profileImage}
           />
-          <span className={styles.name}>Nome do Usuário</span>
+          <span className={styles.name}>{user?.username}</span>
           <span className={styles.username}>@usuario</span>
-          <span className={styles.email}>emailusuario@usuario.com</span>
+          <span className={styles.email}>{user?.email}</span>
           <p className={styles.bio}>
             Biografia: Lorem ipsum dolor sit amet consectetur adipisicing elit...
           </p>

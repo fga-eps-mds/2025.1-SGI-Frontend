@@ -13,17 +13,19 @@ export default function Header({ isLoggedIn }: HeaderProps) {
   return (
     <header className={styles.header}>
       <div className={styles.leftContainer}>
-        <div className={styles.logoContainer}>
-          {/* Image é recomendado pelo next no lugar do img */}
-          <Image
-            src="/gitfica_icon.png"
-            alt="GitFica Logo"
-            width={100}
-            height={100}
-            className={styles.logoIcon}
-          />
-          <span>GitFica</span>
-        </div>
+        <Link href="/">
+          <div className={styles.logoContainer}>
+            {/* Image é recomendado pelo next no lugar do img */}
+            <Image
+              src="/gitfica_icon.png"
+              alt="GitFica Logo"
+              width={100}
+              height={100}
+              className={styles.logoIcon}
+            />
+            <span>GitFica</span>
+          </div>
+        </Link>
 
         <nav className={styles.navBar}>
           <ul>

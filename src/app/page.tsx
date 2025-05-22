@@ -16,6 +16,7 @@ export default function Home() { // definir o componente principal da página
     window.location.href = '/api/auth/callback/github?code=CODIGO_TESTE'
   };
 
+  
   return (
     <>
 

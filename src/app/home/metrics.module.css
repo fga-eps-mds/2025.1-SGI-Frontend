@@ -5,15 +5,15 @@
   gap: 20px;
   color: white;
   font-family: var(--font-roboto), sans-serif;
-  height: 100vh;
+  min-height: 90vh;
 }
 
 .leftPanel {
   flex: 1;
   background: #222838;
   border-radius: 10px;
-  padding: 40px;
-  max-height: 775px;
+  padding: 30px;
+  max-height: 800px;
   max-width: 460px;
 }
 
@@ -67,7 +67,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 25px;
-  margin-top: 20px;
+  margin-top: 15px;
   justify-content: center;
   align-content: center;
   font-weight: bold;
@@ -125,4 +125,6 @@
   font-weight: bold;
   width: 100%;
   background-color: #2E3547;
+  align-items: center;
+  justify-content: center;
 }

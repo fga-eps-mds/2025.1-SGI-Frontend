@@ -1,5 +1,5 @@
 'use client';
-import styles from './home.module.css';
+import styles from './metrics.module.css';
 import Image from 'next/image';
 
 
@@ -36,7 +36,7 @@ export default function Home() {
             <span>Contribuidor VIP</span>
           </div>
         </div>
-      </section>
+      </section> 
 
         <section className={styles.rightPanel}>
           <h3> RESUMO</h3>

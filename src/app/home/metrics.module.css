@@ -7,6 +7,11 @@
   min-height: 90vh;
 }
 
+.link {
+  color: white;
+  text-decoration: none;
+}
+
 .topPanel {
   display: flex;
   align-items: center;

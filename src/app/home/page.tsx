@@ -1,6 +1,7 @@
 'use client';
 import styles from './metrics.module.css';
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 export default function Home() {
@@ -49,11 +50,11 @@ export default function Home() {
               </div>
               <div className={styles.points}> Total de pontos: <strong>850</strong></div>
             </div>
-                        <div className={styles.statisticsScroll}> ESTATÍSTICAS GERAIS <span className={`material-symbols-outlined ${styles.iconRight}`}>arrow_downward</span></div>
+                      <Link href="/home#statistics" className={styles.link}><div className={styles.statisticsScroll}> ESTATÍSTICAS GERAIS <span className={`material-symbols-outlined ${styles.iconRight}`}>arrow_downward</span></div></Link>  
           </section>
       </div>
-      <div className={styles.bottomPanel}>
-        <div className={styles.statisticCard}>
+      <div id='statistics' className={styles.bottomPanel}>
+        <div  className={styles.statisticCard}>
           <h3 className={styles.statisticCardTitle}>COMMITS</h3>
           <p className={styles.statisticCardContent}>Commits desde a criação da conta:</p>
           <p className={styles.statisticCardContent}>Última semana:</p>

@@ -153,6 +153,10 @@
   justify-content: center;
 }
 
+.iconRight{
+  margin-left: 25px;
+}
+
 .bottomPanel {
   align-items: center;
   justify-content: center;

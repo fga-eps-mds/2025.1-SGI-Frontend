@@ -49,7 +49,7 @@ export default function Home() {
               </div>
               <div className={styles.points}> Total de pontos: <strong>850</strong></div>
             </div>
-                        <div className={styles.statisticsScroll}> ESTATÍSTICAS GERAIS</div>
+                        <div className={styles.statisticsScroll}> ESTATÍSTICAS GERAIS <span className={`material-symbols-outlined ${styles.iconRight}`}>arrow_downward</span></div>
           </section>
       </div>
       <div className={styles.bottomPanel}>

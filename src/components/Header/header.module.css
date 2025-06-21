@@ -1,0 +1,53 @@
+
+
+/* Topo fixo */
+.retanguloTopo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* corrigido de 100vw para 100% */
+  height: 100px;
+  background-color: #2B009D;
+}
+
+/* Botão "Entrar" fixo */
+.retanguloEntrar {
+  position: fixed;
+  top: 31.5px; /* corrigido: adicionada unidade */
+  right: 40px;  /* corrigido: adicionada unidade */
+  width: 100px;
+  height: 37px;
+  background-color: #5F29F4;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 14px;
+}
+
+/* Logo */
+.logoContainer {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.logoIcon {
+  width: 5rem;
+  height: 5rem;
+}
+
+.logoContainer span {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  font-family: var(--font-roboto), sans-serif;
+}

@@ -5,19 +5,6 @@ import styles from './page.module.css'; // importando os estilos do arquivo page
 export default function Home() { // definir o componente principal da página 
   return (
     <>
-      {/* Primeira seção com retângulos */}
-      <main> {/* tag semântica para o conteúdo principal */}
-        <div className={styles.retanguloTopo}></div> {/* aplicar a classe importada */}
-        <div className={styles.retanguloEntrar}>
-          Entrar
-        </div>
-      </main>
-
-      {/* Segunda seção com icone do GitFica*/}
-      <div className={styles.logoContainer}>
-        <img src="gitfica_icon.png" alt= "GitFica Logo" className={styles.logoIcon} />
-        <span>GitFica</span>
-        </div>
 
       {/* Terceira seção com login do GitHub */}
       <div className={styles.container}>

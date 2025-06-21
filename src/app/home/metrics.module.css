@@ -1,11 +1,18 @@
 .container {
-  display: flex;
   justify-content: space-between;
   padding: 40px 70px 0px 100px;
   gap: 20px;
   color: white;
   font-family: var(--font-roboto), sans-serif;
   min-height: 90vh;
+}
+
+.topPanel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 30px;
 }
 
 .leftPanel {
@@ -85,23 +92,40 @@
 }
 
 .badges .active {
-  background-color: #5F29F4;
+  background-color: #5f29f465;
+  border: #5F29F4 1px solid;
   opacity: 1;
 }
 
 .rightPanel {
   flex: 2;
-  background: #222838;
+  border-radius: 10px;
+  max-height: 630px;
+  max-width: 1100px;
+}
+
+.containerMetrics {
+  flex: 2;
   border-radius: 10px;
   padding: 50px;
   max-height: 630px;
   max-width: 1100px;
+  background: #222838;
+}
+
+.statisticsScroll {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: large;
+  margin-top: 60px;
 }
 
 .metrics {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  margin: 50px 20px;
+  margin: 30px 20px;
   gap: 65px
 }
 
@@ -127,4 +151,34 @@
   background-color: #2E3547;
   align-items: center;
   justify-content: center;
+}
+
+.bottomPanel {
+  align-items: center;
+  justify-content: center;
+  margin-top: 200px;
+  padding: 0px 500px;
+}
+
+.statisticCard {
+  background: #5f29f465 ;
+  border-radius: 30px;
+  padding: 30px;
+  width: 750px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.statisticCardTitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.statisticCardContent{
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 10px;
 }

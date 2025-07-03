@@ -240,6 +240,10 @@
       width: 100%;
   }
 
+    .metrics {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .bottomPanel {
     margin-top: 40px;
   }

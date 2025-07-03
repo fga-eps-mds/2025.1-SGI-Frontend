@@ -1,88 +1,3 @@
-/* Desktops pequenos / tablets - até 1200px */
-@media (max-width: 1200px) {
-  .container {
-    padding: 30px 40px;
-  }
-
-  .topPanel {
-    gap: 30px;
-  }
-
-  .leftPanel {
-    max-width: 35vw;
-    min-width: 280px;
-  }
-}
-
-
-/* Telas de Tablet comum - até 992px */
-@media (max-width: 992px) {
-  .topPanel {
-    flex-direction: column; 
-    align-items: center; 
-    gap: 40px;
-  }
-
-  .leftPanel, .rightPanel {
-    max-width: 100%;
-    max-height: none;
-  }
-
-  .leftPanel {
-      min-width: 0;
-      width: 100%;
-      max-width: 600px;
-  }
-
-  .rightPanel {
-      width: 100%;
-  }
-
-  .bottomPanel {
-    margin-top: 40px;
-  }
-}
-
-
-/* Telas de Celular - até 576px */
-@media (max-width: 576px) {
-  .container {
-    padding: 20px 15px;
-  }
-
-  .profileImage {
-    width: 120px;
-    height: 120px;
-  }
-
-  .leftPanel, .containerMetrics, .statisticCard {
-    padding: 20px;
-  }
-
-  .separationBar {
-      margin: 30px 0;
-  }
-
-  .metrics {
-    gap: 15px;
-    grid-template-columns: 1fr;
-  }
-
-  .metrics div {
-      height: auto;
-      min-height: 120px;
-  }
-
-  .points {
-      font-size: 1rem;
-  }
-
-  .statisticCardTitle {
-      font-size: 1rem;
-  }
-}
-
-
 /* Desktop comum */
 .container {
   justify-content: space-between;
@@ -282,4 +197,89 @@
   font-size: 1rem;
   text-align: center;
   margin-top: 10px;
+}
+
+
+/* Desktops pequenos / tablets - até 1200px */
+@media (max-width: 1200px) {
+  .container {
+    padding: 30px 40px;
+  }
+
+  .topPanel {
+    gap: 30px;
+  }
+
+  .leftPanel {
+    max-width: 35vw;
+    min-width: 280px;
+  }
+}
+
+
+/* Telas de Tablet comum - até 992px */
+@media (max-width: 992px) {
+  .topPanel {
+    flex-direction: column; 
+    align-items: center; 
+    gap: 40px;
+  }
+
+  .leftPanel, .rightPanel {
+    max-width: 100%;
+    max-height: none;
+  }
+
+  .leftPanel {
+      min-width: 0;
+      width: 100%;
+      max-width: 600px;
+  }
+
+  .rightPanel {
+      width: 100%;
+  }
+
+  .bottomPanel {
+    margin-top: 40px;
+  }
+}
+
+
+/* Telas de Celular - até 576px */
+@media (max-width: 576px) {
+  .container {
+    padding: 20px 15px;
+  }
+
+  .profileImage {
+    width: 120px;
+    height: 120px;
+  }
+
+  .leftPanel, .containerMetrics, .statisticCard {
+    padding: 20px;
+  }
+
+  .separationBar {
+      margin: 30px 0;
+  }
+
+  .metrics {
+    gap: 15px;
+    grid-template-columns: 1fr;
+  }
+
+  .metrics div {
+      height: auto;
+      min-height: 120px;
+  }
+
+  .points {
+      font-size: 1rem;
+  }
+
+  .statisticCardTitle {
+      font-size: 1rem;
+  }
 }

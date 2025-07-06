@@ -32,6 +32,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+        <link  href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
       </head>
       <Header  isLoggedIn={true}/>
       <body className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable}`}>

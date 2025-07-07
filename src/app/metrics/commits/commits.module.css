@@ -1,5 +1,28 @@
+.container{
+    font-family: var(--font-roboto), sans-serif;
+    min-height: 90vh;
+    color: white;
+    padding: 30px 40px;
 
+}
+
+.backButtonDiv{ 
+    font-size: 1.8rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.backButton{
+    margin-left: 4%;
+}
+
+.titleDiv{
+    margin-left: 25%;
+}
 
 .Top{
     width: 100vw;
+    display: flex;
+    flex-direction: row;
 }

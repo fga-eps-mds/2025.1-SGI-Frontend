@@ -11,10 +11,10 @@ export default function Missions(){
                 <div className={styles.missionsTitle}>
                     <h3> Missões</h3>
                 </div>
-                <div className={styles.rewardsBox}>
+                <Link href="/rewards_history" className={styles.rewardsBox}>
                     <span className="material-icons">history</span>
                     <span>Histórico de recompensas</span>
-                </div>
+                </Link>
                  <div className={styles.tabs}>
                     <span>Diárias</span>
                     <span>Semanais</span>
@@ -26,7 +26,7 @@ export default function Missions(){
                     <div className={styles.taskBox}>
                         <div className={styles.rewardTitle}>
                         <span className="material-symbols-outlined">rewarded_ads</span>
-                        <span>50 XP</span>
+                        <span>50XP</span>
                         </div>
                         <div className={styles.taskContent}>
                             <div className={styles.checkPosition}>
@@ -41,7 +41,7 @@ export default function Missions(){
                     <div className={styles.taskBox}>
                         <div className={styles.rewardTitle}>
                         <span className="material-symbols-outlined">rewarded_ads</span>
-                        <span>100 XP</span>
+                        <span>100XP</span>
                     </div>
                         <div className={styles.taskContent}>
                             <div className={styles.checkPosition}>
@@ -54,7 +54,7 @@ export default function Missions(){
                     <div className={styles.taskBox}>
                         <div className={styles.rewardTitle}>
                         <span className="material-symbols-outlined">rewarded_ads</span>
-                        <span>+100 XP</span>
+                        <span>+100XP</span>
                     </div>
                         <div className={styles.taskContent}>
                             <div className={styles.checkPosition}>

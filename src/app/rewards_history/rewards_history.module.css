@@ -1,0 +1,81 @@
+.container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;    
+  height: 100vh;  
+  font-family: var(--font-roboto), sans-serif;  
+  color: white;
+}
+
+.mainPanel {
+  width: 60vw;
+  height: 45vw;
+  background: #5F29F4;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.rewardsTitle{
+  position: relative;
+  top: 40px;
+  left: 40px;
+}
+
+.tabs{
+  display: flex;
+  margin-left: 40px;
+  margin-top: 90px;
+  gap: 40px;
+}
+
+.separationBar {
+  width: 100%;
+  height: 1px;
+  background-color: #444;
+  margin: 15px 0px;
+}
+
+.choiceBar {
+  width: 4%;
+  height: 2px;
+  background-color: #046FF8;
+  margin: 0 40px;
+}
+
+.boxSpace{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.taskBox{
+  position: relative;
+  width: 50vw;
+  height: 6vw;
+  background: #222838;
+  border-radius: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  top: 60px;
+  box-shadow: 2px 5px 6px black;
+}
+
+.taskTitle{
+  position: relative;
+  font-size: 18px;
+  top: 30px;
+  left: 40px; 
+}
+
+.rewardTitle{
+  display: flex;
+  position: absolute;
+  top: 30px;
+  right: 15px;
+}
+
+.xpTitle{
+  position: relative;
+  top: 20px;
+  left: 50px;
+}

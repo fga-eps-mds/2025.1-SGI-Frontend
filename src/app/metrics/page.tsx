@@ -19,36 +19,36 @@ export default function Home() {
             <div className={styles.xpBar}>
               <div className={styles.xpFill} style={{ width: '39%' }}></div>
             </div>
-            <p> Experiência: 390/1000</p>
+            <div className={styles.xp}><span className={`material-symbols-outlined`}>star</span><p> Experiência: 390/1000</p></div>
             <p> Nível 10</p>
           </div>
           <div className={styles.separationBar}></div>
           <div className={styles.achievements}>
             <div className={styles.achievementsTitle}>
-              <h3> Conquistas</h3>
+              <span className={`${styles.icon} material-symbols-outlined`}>trophy</span><h3> Conquistas</h3>
             </div>
             <div className={styles.badges}>
-              <span className={styles.active}>Primeiro PR</span>
-              <span className={styles.active}>100 Commits</span>
-              <span>Líder de Equipe</span>
-              <span className={styles.active}>Caçador de Bugs</span>
-              <span>Estrela do Mês</span>
-              <span>Contribuidor VIP</span>
+              <div  className={styles.active}><span className={`${styles.icon} material-symbols-outlined`}>filter_1</span><span>Primeiro PR</span></div>
+              <div  className={styles.active}><span className={`${styles.icon} material-symbols-outlined`}>commit</span><span>100 Commits</span></div>
+              <div><span className={`${styles.icon} material-symbols-outlined`}>groups</span><span>Líder de Equipe</span></div>
+              <div  className={styles.active}><span className={`${styles.icon} material-symbols-outlined`}>bug_report</span><span >Caçador de Bugs</span></div>
+              <div><span className={`${styles.icon} material-symbols-outlined`}>star_shine</span><span>Estrela do Mês</span></div>
+              <div><span className={`${styles.icon} material-symbols-outlined`}>rocket</span><span>Contribuidor VIP</span></div>
             </div>
           </div>
         </section>
           <section className={styles.rightPanel}>
             <div className={styles.containerMetrics}>
-              <h3> RESUMO</h3>
+              <div className={styles.titleMetrics}><span className={`${styles.icon} material-symbols-outlined`}>dashboard</span> <h3> RESUMO</h3></div>
               <div className={styles.metrics}>
-                <div>Total de commits: <strong>120</strong></div>
-                <div>Total de issues abertas: <strong>15</strong></div>
-                <div>Total de pull requests abertos: <strong>8</strong></div>
-                <div>Total de PRs de terceiros fechados: <strong>5</strong></div>
-                <div>Total de PRs resolvidos por terceiros: <strong>4</strong></div>
-                <div>Total de merges: <strong>11</strong></div>
+                <div> <span className={`${styles.icon} material-symbols-outlined`}>commit</span>Total de commits: <strong className={styles.quantityMetric}>120</strong></div>
+                <div> <span className={`${styles.icon} material-symbols-outlined`}>error</span>Total de issues abertas: <strong className={styles.quantityMetric}>15</strong></div>
+                <div> <span className={`${styles.icon} material-symbols-outlined`}>graph_1</span>Total de pull requests abertos: <strong className={styles.quantityMetric}>8</strong></div>
+                <div> <span className={`${styles.icon} material-symbols-outlined`}>task</span>Total de PRs de terceiros fechados: <strong className={styles.quantityMetric}>5</strong></div>
+                <div> <span className={`${styles.icon} material-symbols-outlined`}>task_alt</span>Total de PRs resolvidos por terceiros: <strong className={styles.quantityMetric}>4</strong></div>
+                <div> <span className={`${styles.icon} material-symbols-outlined`}>merge</span>Total de merges: <strong className={styles.quantityMetric}>11</strong></div>
               </div>
-              <div className={styles.points}> Total de pontos: <strong>850</strong></div>
+              <div className={styles.points}><span className={`${styles.icon} material-symbols-outlined`}>trophy</span> <p>Total de pontos: <strong>850</strong></p></div>
             </div>
                       <Link href="/metrics#statistics" className={styles.link}><div className={styles.statisticsScroll}> ESTATÍSTICAS GERAIS <span className={`material-symbols-outlined ${styles.iconRight}`}>arrow_downward</span></div></Link>  
           </section>

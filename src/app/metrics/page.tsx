@@ -41,7 +41,7 @@ export default function Home() {
             <div className={styles.containerMetrics}>
               <h3> RESUMO</h3>
               <div className={styles.metrics}>
-                <div>Total de commits: <strong>120</strong></div>
+                
                 <div>Total de issues abertas: <strong>15</strong></div>
                 <div>Total de pull requests abertos: <strong>8</strong></div>
                 <div>Total de PRs de terceiros fechados: <strong>5</strong></div>
@@ -50,7 +50,7 @@ export default function Home() {
               </div>
               <div className={styles.points}> Total de pontos: <strong>850</strong></div>
             </div>
-                      <Link href="/home#statistics" className={styles.link}><div className={styles.statisticsScroll}> ESTATÍSTICAS GERAIS <span className={`material-symbols-outlined ${styles.iconRight}`}>arrow_downward</span></div></Link>  
+                      <Link href="/metrics#statistics" className={styles.link}><div className={styles.statisticsScroll}> ESTATÍSTICAS GERAIS <span className={`material-symbols-outlined ${styles.iconRight}`}>arrow_downward</span></div></Link>  
           </section>
       </div>
       <div id='statistics' className={styles.bottomPanel}>

@@ -29,7 +29,7 @@ export default function Header({ isLoggedIn }: HeaderProps) {
 
         <nav className={styles.navBar}>
           <ul>
-            <li className={styles.navLinks}><Link href="/home">Métricas</Link></li>
+            <li className={styles.navLinks}><Link href="/metrics">Métricas</Link></li>
             <li className={styles.navLinks}><Link href="#">Missões</Link></li>
             <li className={styles.navLinks}><Link href="#">Equipes</Link></li>
           </ul>

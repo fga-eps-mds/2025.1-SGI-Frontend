@@ -41,7 +41,7 @@ export default function Home() {
             <div className={styles.containerMetrics}>
               <h3> RESUMO</h3>
               <div className={styles.metrics}>
-                
+                <div>Total de commits: <strong>120</strong></div>
                 <div>Total de issues abertas: <strong>15</strong></div>
                 <div>Total de pull requests abertos: <strong>8</strong></div>
                 <div>Total de PRs de terceiros fechados: <strong>5</strong></div>

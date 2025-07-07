@@ -26,7 +26,7 @@ export default function Missions(){
                     <div className={styles.taskBox}>
                         <div className={styles.rewardTitle}>
                         <span className="material-symbols-outlined">rewarded_ads</span>
-                        <span>50XP</span>
+                        <span>50 XP</span>
                         </div>
                         <div className={styles.taskContent}>
                             <div className={styles.checkPosition}>
@@ -41,7 +41,7 @@ export default function Missions(){
                     <div className={styles.taskBox}>
                         <div className={styles.rewardTitle}>
                         <span className="material-symbols-outlined">rewarded_ads</span>
-                        <span>100XP</span>
+                        <span>100 XP</span>
                     </div>
                         <div className={styles.taskContent}>
                             <div className={styles.checkPosition}>
@@ -54,7 +54,7 @@ export default function Missions(){
                     <div className={styles.taskBox}>
                         <div className={styles.rewardTitle}>
                         <span className="material-symbols-outlined">rewarded_ads</span>
-                        <span>+100XP</span>
+                        <span>+100 XP</span>
                     </div>
                         <div className={styles.taskContent}>
                             <div className={styles.checkPosition}>

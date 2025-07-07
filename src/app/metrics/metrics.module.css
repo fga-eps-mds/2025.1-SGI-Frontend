@@ -186,6 +186,11 @@
   justify-content: center;
 }
 
+.linkCard {
+  text-decoration: none;
+  color: white;
+}
+
 .quantityMetric{
   color: #5F29F4 ;
 }

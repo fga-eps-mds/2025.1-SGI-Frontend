@@ -44,19 +44,19 @@ export default function Home() {
                 <Link href={"/metrics/commits"} className={styles.linkCard}>
                   <div> <span className={`${styles.icon} material-symbols-outlined`}>commit</span>Total de commits: <strong className={styles.quantityMetric}>120</strong></div>
                 </Link>
-                <Link href={"/openPRs"} className={styles.linkCard}>
+                <Link href={"/metrics/openPRs"} className={styles.linkCard}>
                   <div> <span className={`${styles.icon} material-symbols-outlined`}>graph_1</span>Total de pull requests abertos: <strong className={styles.quantityMetric}>8</strong></div>
                 </Link>
-                <Link href={"/issues"} className={styles.linkCard}>
+                <Link href={"/metrics/issues"} className={styles.linkCard}>
                   <div> <span className={`${styles.icon} material-symbols-outlined`}>error</span>Total de issues abertas: <strong className={styles.quantityMetric}>15</strong></div>
                 </Link>
-                <Link href={"/PRsdone"} className={styles.linkCard}>
+                <Link href={"/metrics/PRsdone"} className={styles.linkCard}>
                   <div> <span className={`${styles.icon} material-symbols-outlined`}>task</span>Total de PRs de terceiros fechados: <strong className={styles.quantityMetric}>5</strong></div>
                 </Link>
-                <Link href={"/PRsclosed"} className={styles.linkCard}>
+                <Link href={"/metrics/PRsclosed"} className={styles.linkCard}>
                   <div> <span className={`${styles.icon} material-symbols-outlined`}>task_alt</span>Total de PRs resolvidos por terceiros: <strong className={styles.quantityMetric}>4</strong></div>
                 </Link>
-                <Link href={"/merges"} className={styles.linkCard}>
+                <Link href={"/metrics/merges"} className={styles.linkCard}>
                   <div> <span className={`${styles.icon} material-symbols-outlined`}>merge</span>Total de merges: <strong className={styles.quantityMetric}>11</strong></div>
                 </Link>
               </div>

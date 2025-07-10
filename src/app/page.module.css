@@ -1,5 +1,5 @@
 .container {
-  min-height: 100vh;
+  min-height: 80vh;
   background-color: #1E2432;
   display: flex;
   align-items: center;
@@ -33,53 +33,4 @@
 .icon {
   width: 5rem;
   height: 5rem;
-}
-
-.retanguloTopo { /* Criando um estilo */
-  position: fixed; /* fixa o retangulo na tela */
-  top: 0; /* cola no topo */
-  left: 0; /* cola na esquerda */
-  width: 100vw; /* largura igual à janela visível */
-  height: 100px; /* altura */
-  background-color: #2B009D; /* cor de fundo */
-}
-
-.retanguloEntrar {
-  position: fixed;
-  top: 31.5;
-  right: 40;
-  width: 100px;
-  height: 37px;
-  background-color: #5F29F4;
-  border-radius: 8px; /* deixa a borda arredondada */
-  cursor: pointer; /* mostra que é clicável */
-  display: flex; /* o elemento vira um container flex o que permite controlar o posicionamento interno dos filhos */
-  align-items: center; /* controla o alinhamento vertical dos itens */
-  justify-content: center; /* controla o alinhamento horizontal dos itens */
-  color: white;
-  font-weight: bold; /* negrito */
-  font-family: var(--font-roboto), sans-serif /* mudando a fonte para roboto */
-  font-size: 14px; /* tamanho do texto */
-}
-
-.logoContainer {
-position: absolute;
-top: 10px;
-left: 10px;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 5px; /* espaço entre ícone e texto */
-}
-
-.logoIcon {
-  width: 5rem; /* largura */
-  height: 5rem; /* altura */
-}
-
-.logoContainer span {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: white;
-  font-family: var(--font-roboto), sans-serif /* mudando a fonte para roboto */
 }

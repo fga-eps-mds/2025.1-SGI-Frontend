@@ -1,0 +1,85 @@
+:root {
+  --font-roboto: 'Roboto', sans-serif;
+}
+
+.container {
+  font-family: var(--font-roboto);
+  min-height: 100vh;
+  background-color: #1E2432;
+  padding-left: 54px;
+  padding-top: 136px;
+  box-sizing: border-box;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.button {
+  width: 404px;
+  height: 80px;
+  background-color: #222838;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  outline: none;
+}
+
+.teamsBox {
+  margin-top: 36px;
+  width: 404px;
+  height: 480px;
+  background-color: #222838;
+  border-radius: 8px;
+  padding: 20px;
+  color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.teamsTitle {
+  text-align: center;
+  font-size: 28px;
+}
+
+.divider {
+  width: 346px;
+  height: 1px;
+  background-color: white;
+  margin: 16px auto 20px auto;
+}
+
+.teamsList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.teamItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #1E2432;
+  border-radius: 8px;
+  padding: 18px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.avatar {
+  background-color: #5D00D4;
+  color: white;
+  width: 32px;
+  height: 32px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}

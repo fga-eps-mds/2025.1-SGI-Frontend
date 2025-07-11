@@ -1,9 +1,9 @@
 .container {
   display: flex;
-  justify-content: center; 
-  align-items: center;    
-  height: 100vh;  
-  font-family: var(--font-roboto), sans-serif;  
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: var(--font-roboto), sans-serif;
   color: white;
 }
 
@@ -13,9 +13,11 @@
   background: #5F29F4;
   border: 1px solid black;
   border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.rewardsBox{
+.rewardsBox {
   width: 17vw;
   height: 4vw;
   background: #046FF8;
@@ -26,15 +28,19 @@
   margin-left: auto;
   margin-right: 20px;
   gap: 5px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1vw;
 }
 
-.missionsTitle{
+.missionsTitle {
   position: relative;
-  top: 40px;
+  top: 20px;
   left: 40px;
 }
 
-.tabs{
+.tabs {
   display: flex;
   margin-left: 40px;
   margin-top: 40px;
@@ -55,7 +61,7 @@
   margin: 0 40px;
 }
 
-.taskBox{
+.taskBox {
   position: relative;
   width: 50vw;
   height: 6vw;
@@ -66,16 +72,16 @@
   margin-top: 30px;
 }
 
-.boxSpace{
+.boxSpace {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.taskTitle{
+.taskTitle {
   position: relative;
   top: 20px;
-  left: 40px; 
+  left: 40px;
 }
 
 .xpBar {
@@ -99,15 +105,16 @@
   border-radius: 4px;
 }
 
-.rewardTitle{
+.rewardTitle {
   display: flex;
   align-items: center;
   position: absolute;
   top: 15px;
   right: 15px;
+  gap: 5px;
 }
 
-.taskContent{
+.taskContent {
   display: flex;
   align-items: center;
   gap: 1px;
@@ -117,8 +124,38 @@
   color: #28A745;
 }
 
-.checkPosition{
-  position:absolute;
+.checkPosition {
+  position: absolute;
   top: 15px;
   left: 10px;
+}
+
+/* Modal */
+.historyModal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.historyContent {
+  background: #222838;
+  padding: 40px 30px;
+  border-radius: 16px;
+  color: #fff;
+  min-width: 320px;
+  max-width: 90vw;
+}
+
+.historyContent button {
+  background: #5F29F4;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  margin-bottom: 20px;
+  cursor: pointer;
 }

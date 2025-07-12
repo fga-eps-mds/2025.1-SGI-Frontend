@@ -4,36 +4,44 @@ import styles from './page.module.css';
 import Image from 'next/image';
 
 export default function EquipesPage() {
+  const currentUserEmail = 'meu@email.com';
+
   const [teams, setTeams] = useState([
-    { name: 'Alpha', members: ['alice@example.com'] },
-    { name: 'Beta', members: ['bob@example.com'] },
-    { name: 'Gama', members: [] }
+    { name: 'Alpha', members: ['alice@example.com', currentUserEmail] },
+    { name: 'Beta', members: ['bob@example.com', currentUserEmail] },
+    { name: 'Gama', members: [currentUserEmail] }
   ]);
 
+  const [selectedTeamName, setSelectedTeamName] = useState<string | null>(null);
   const [showCreatePanel, setShowCreatePanel] = useState(false);
   const [isEditingName, setIsEditingName] = useState(false);
   const [teamName, setTeamName] = useState('');
   const [showInviteModal, setShowInviteModal] = useState(false);
   const [inviteEmail, setInviteEmail] = useState('');
   const [showAlert, setShowAlert] = useState(false);
-  const [selectedTeamIndex, setSelectedTeamIndex] = useState<number | null>(null);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const isOwner = true;
+
+  const myTeams = teams.filter(team => team.members.includes(currentUserEmail));
+
+  const selectedTeamIndex = selectedTeamName
+    ? teams.findIndex(team => team.name === selectedTeamName)
+    : null;
 
   const resetCreation = () => {
     setShowCreatePanel(false);
     setIsEditingName(false);
     setTeamName('');
-    setSelectedTeamIndex(null);
+    setSelectedTeamName(null);
     setShowAlert(false);
   };
 
   const handleToggleCreatePanel = () => {
-    if (showCreatePanel && selectedTeamIndex === null) {
+    if (showCreatePanel && selectedTeamName === null) {
       resetCreation();
     } else {
-      setSelectedTeamIndex(null);
+      setSelectedTeamName(null);
       setTeamName('');
       setShowCreatePanel(true);
       setIsEditingName(true);
@@ -41,12 +49,13 @@ export default function EquipesPage() {
     }
   };
 
-  const handleSelectTeam = (index: number) => {
-    if (selectedTeamIndex === index) {
+  const handleSelectTeam = (name: string) => {
+    if (selectedTeamName === name) {
       resetCreation();
     } else {
-      setSelectedTeamIndex(index);
-      setTeamName(teams[index].name);
+      setSelectedTeamName(name);
+      const team = teams.find(t => t.name === name);
+      setTeamName(team ? team.name : '');
       setShowCreatePanel(true);
       setIsEditingName(false);
       setShowAlert(false);
@@ -61,7 +70,7 @@ export default function EquipesPage() {
     }
 
     const isDuplicate = teams.some(
-      (t, idx) => t.name.toLowerCase() === trimmed.toLowerCase() && idx !== selectedTeamIndex
+      (t) => t.name.toLowerCase() === trimmed.toLowerCase() && t.name !== selectedTeamName
     );
 
     if (isDuplicate) {
@@ -75,9 +84,13 @@ export default function EquipesPage() {
         updated[selectedTeamIndex].name = trimmed;
         return updated;
       });
+      setSelectedTeamName(trimmed);
     } else {
-      setTeams((prev) => [...prev, { name: trimmed, members: [] }]);
-      setSelectedTeamIndex(teams.length);
+      setTeams((prev) => {
+        const newTeam = { name: trimmed, members: [currentUserEmail] };
+        return [...prev, newTeam];
+      });
+      setSelectedTeamName(trimmed);
     }
 
     setIsEditingName(false);
@@ -104,13 +117,33 @@ export default function EquipesPage() {
     setShowInviteModal(false);
   };
 
-  const handleRemoveMember = (memberIndex: number) => {
+  const handleRemoveMember = (memberToRemove: string) => {
     if (selectedTeamIndex === null) return;
     setTeams((prev) => {
       const updated = [...prev];
-      updated[selectedTeamIndex].members.splice(memberIndex, 1);
+      const team = updated[selectedTeamIndex];
+      team.members = team.members.filter(member => member !== memberToRemove);
       return updated;
     });
+  };
+
+  const handleLeaveTeam = () => {
+    if (selectedTeamIndex === null) return;
+
+    setTeams((prev) => {
+      const updated = [...prev];
+      const team = updated[selectedTeamIndex];
+
+      team.members = team.members.filter((m) => m !== currentUserEmail);
+
+      if (team.members.length === 0) {
+        updated.splice(selectedTeamIndex, 1);
+      }
+
+      return updated;
+    });
+
+    resetCreation();
   };
 
   useEffect(() => {
@@ -140,8 +173,15 @@ export default function EquipesPage() {
         <h2 className={styles.teamsTitle}>Suas Equipes</h2>
         <div className={styles.divider}></div>
         <div className={styles.teamsList}>
-          {teams.map((team, index) => (
-            <div key={index} className={styles.teamItem} onClick={() => handleSelectTeam(index)}>
+          {myTeams.map((team) => (
+            <div
+              key={team.name}
+              className={styles.teamItem}
+              onClick={() => handleSelectTeam(team.name)}
+              style={{
+                backgroundColor: selectedTeamName === team.name ? '#2b2f3e' : undefined
+              }}
+            >
               <div className={styles.avatar}>{team.name[0]}</div>
               <div>
                 <div>{team.name}</div>
@@ -166,7 +206,7 @@ export default function EquipesPage() {
                 onChange={(e) => setTeamName(e.target.value)}
                 onBlur={handleNameSave}
                 onKeyDown={handleKeyDown}
-                placeholder="Digite o nome da equipe"
+                placeholder="Nome da equipe"
               />
             ) : (
               <>
@@ -205,24 +245,55 @@ export default function EquipesPage() {
           <div className={styles.separatorLine}></div>
 
           {/* Membros */}
-          <div className={styles.membersList}>
-            {(selectedTeamIndex !== null ? teams[selectedTeamIndex].members : []).map(
-              (member, i) => (
-                <div key={i} className={styles.memberItem}>
+          {selectedTeamIndex !== null && (
+            <div className={styles.membersList}>
+              {teams[selectedTeamIndex].members.map((member) => (
+                <div key={member} className={styles.memberItem}>
                   <div className={styles.avatar}>👤</div>
                   <span>{member}</span>
-                  {isOwner && (
-                    <Image
-                      src="/teams/trash.svg"
-                      alt="Remover"
-                      width={20}
-                      height={20}
-                      className={styles.removeIcon}
-                      onClick={() => handleRemoveMember(i)}
-                    />
-                  )}
+                  {isOwner ? (
+                    member !== currentUserEmail ? (
+                      <Image
+                        src="/teams/trash.svg"
+                        alt="Remover"
+                        width={20}
+                        height={20}
+                        className={styles.removeIcon}
+                        onClick={() => handleRemoveMember(member)}
+                      />
+                    ) : (
+                      <div style={{ width: 20, height: 20, visibility: 'hidden' }}></div>
+                    )
+                  ) : null}
                 </div>
-              )
+              ))}
+            </div>
+          )}
+
+          {/* Botões fixos no rodapé */}
+          <div className={styles.actionsFooter}>
+            <button className={`${styles.actionButton} ${styles.leave}`} onClick={handleLeaveTeam}>
+              <Image src="/teams/leave.svg" alt="Sair" width={28} height={28} />
+              <span>Sair da Equipe</span>
+            </button>
+
+            {isOwner && (
+              <>
+                <button className={styles.actionButton}>
+                  <Image src="/teams/admin.svg" alt="Admin" width={28} height={28} />
+                  <span>Tornar Admin</span>
+                </button>
+
+                <button className={styles.actionButton}>
+                  <Image src="/teams/owner.svg" alt="Dono" width={28} height={28} />
+                  <span>Tornar Dono</span>
+                </button>
+
+                <button className={`${styles.actionButton} ${styles.delete}`}>
+                  <Image src="/teams/trash.svg" alt="Excluir" width={28} height={28} />
+                  <span>Excluir Equipe</span>
+                </button>
+              </>
             )}
           </div>
         </div>

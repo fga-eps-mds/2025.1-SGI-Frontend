@@ -6,8 +6,9 @@
   font-family: var(--font-roboto);
   min-height: 100vh;
   background-color: #1E2432;
-  padding-left: 54px;
+  padding-left: 180px;
   padding-top: 136px;
+  padding-right: 120px;
   box-sizing: border-box;
 }
 
@@ -21,7 +22,7 @@
   width: 404px;
   height: 80px;
   background-color: #222838;
-  border: none;
+  border:none;
   border-radius: 8px;
   color: white;
   font-size: 20px;
@@ -39,7 +40,7 @@
 .teamsBox {
   margin-top: 36px;
   width: 404px;
-  height: 480px;
+  height: 560px;
   background-color: #222838;
   border-radius: 8px;
   padding: 20px;
@@ -99,9 +100,9 @@
 .createPanel {
   position: absolute;
   top: 139px;
-  left: 532px;
+  left: 680px;
   bottom: 36px;
-  width: 814px;
+  width: 1000px;
   padding: 24px;
   background-color: #222838;
   border-radius: 8px;
@@ -160,6 +161,45 @@
   height: 1px;
   background-color: white;
   margin: 20px 0;
+}
+
+.membersList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: #1E2432;
+  padding: 16px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 620px;
+  margin-top: 12px;
+  color: white;
+}
+
+.memberItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #2B3143;
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+.removeIcon {
+  cursor: pointer;
+  filter: brightness(0.8);
+  transition: filter 0.2s ease;
+}
+
+.removeIcon:hover {
+  filter: brightness(1.2);
+}
+
+.memberCount {
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 4px;
+  margin-left: 4px;
 }
 
 .modalOverlay {
@@ -228,42 +268,59 @@
   background-color: #777;
 }
 
-.memberCount {
-  font-size: 12px;
-  color: #aaa;
-  margin-top: 4px;
-  margin-left: 4px;
+/* Ações de gerenciamento da equipe */
+.actionsFooter {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: #222838;
 }
 
-.membersList {
+.actionsContainer {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  background-color: #1E2432;
-  padding: 16px;
-  border-radius: 8px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 24px;
   width: 100%;
   max-width: 620px;
-  margin-top: 12px;
-  color: white;
 }
 
-.memberItem {
+.actionButton {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  background-color: #2B3143;
-  border-radius: 8px;
-  padding: 12px 16px;
-}
-
-.removeIcon {
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: white;
+  font-weight: bold;
   cursor: pointer;
-  filter: brightness(0.8);
-  transition: filter 0.2s ease;
+  transition: transform 0.2s ease;
+  text-align: center;
 }
 
-.removeIcon:hover {
-  filter: brightness(1.2);
+.actionButton:hover {
+  transform: scale(1.05);
+}
+
+.actionButton img {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 4px;
+}
+
+.leave {
+  color: #ff4d4f;
+}
+
+.delete {
+  color: white;
 }
 

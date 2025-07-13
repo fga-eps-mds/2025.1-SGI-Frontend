@@ -23,7 +23,7 @@ export default function Missions(){
                 <div className={styles.choiceBar}></div>
                 <div className={styles.separationBar}></div>
                 <div className={styles.boxSpace}>
-                    <div className={styles.taskBox}>
+                    <Link href="/mission_detail" className={styles.taskBox}>
                         <div className={styles.rewardTitle}>
                         <span className="material-symbols-outlined">rewarded_ads</span>
                         <span>50XP</span>
@@ -37,7 +37,7 @@ export default function Missions(){
                         <div className={styles.xpBar}>
                             <div className={styles.xpFill} style={{ width: '50%' }}></div>
                         </div>
-                    </div>
+                    </Link>
                     <div className={styles.taskBox}>
                         <div className={styles.rewardTitle}>
                         <span className="material-symbols-outlined">rewarded_ads</span>

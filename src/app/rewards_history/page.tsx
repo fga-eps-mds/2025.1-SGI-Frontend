@@ -1,13 +1,18 @@
 'use client';
 import styles from './rewards_history.module.css';
+import Link from 'next/link';
 
 export default function Rewards_history(){
     
     return(
 
         <main className={styles.container}>
+            <Link href="/missions" className={styles.backButton}>
+                <span className="material-icons">arrow_back</span>
+                <span>Voltar</span>
+            </Link>
             <div className={styles.mainPanel}>
-                 <div className={styles.rewardsTitle}>
+                <div className={styles.rewardsTitle}>
                     <h3> Histórico de recompensa</h3>
                 </div>
                 <div className={styles.tabs}>

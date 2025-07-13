@@ -7,6 +7,21 @@
   color: white;
 }
 
+.backButton {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 130px;
+  left: 150px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+
+.backButton:hover {
+  opacity: 0.8;
+}
+
 .mainPanel {
   width: 60vw;
   height: 45vw;

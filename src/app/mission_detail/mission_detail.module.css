@@ -1,0 +1,129 @@
+.container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;    
+  height: 100vh;  
+  font-family: var(--font-roboto), sans-serif;  
+  color: white;
+}
+
+.mainPanel {
+  width: 60vw;
+  height: 45vw;
+  background: #5F29F4;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 130px;
+  left: 150px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+
+.backButton:hover {
+  opacity: 0.8;
+}
+
+.missionTitle {
+  position: relative;
+  top: 35px;
+  left: 40px;
+}
+
+.separationBar {
+  width: 100%;
+  height: 1px;
+  background-color: #444;
+  margin: 60px 0px;
+}
+
+.detailPanel {
+  width: 50vw;
+  height: 25vw;
+  background: #222838;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 2px 5px 6px black;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.detailTitle {
+  position: relative;
+  top: 20px;
+  left: 20px;
+  font-size: 13px;
+}
+
+.detailExplanation {
+  position: relative;
+  top: 40px;
+  left: 20px;
+  font-size: 13px;
+}
+
+.detail_separationBar {
+  width: 100%;
+  height: 1px;
+  background-color: #51596F;
+  margin: 60px 0px;
+}
+
+.xpBar {
+  width: 90%;
+  height: 20px;
+  background-color: #1E1E1E;
+  border-radius: 12px;
+  margin: 25px;
+  position: relative;
+  top: 10px;
+  justify-content: center;
+}
+
+.xpFill {
+  height: 100%;
+  background-color: #046FF8;
+  border-radius: 12px;
+}
+
+.completedBox {
+  display: flex;
+  position: relative;
+  width: 30vw;
+  height: 4vw;
+  background: #046FF8;
+  border-radius: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+.infoTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: -30px;
+}
+
+.infoDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: -30px;
+}
+
+.tabs {
+  display: flex;
+  margin-left: 20px;
+  gap: 20px;
+}

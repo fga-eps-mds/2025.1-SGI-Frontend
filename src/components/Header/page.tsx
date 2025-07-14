@@ -3,54 +3,72 @@
 import styles from './header.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useAuth } from '../../hooks/useAuth';
+import { useRouter } from 'next/navigation';
 
+export default function Header() {
+  const { isAuthenticated, isLoading, user } = useAuth();
+  const router = useRouter();
 
-interface HeaderProps {
-  isLoggedIn: boolean;
-}
+  const handleProfileClick = () => {
+    if (isAuthenticated) {
+      router.push('/profile');
+    } else {
+      router.push('/');
+    }
+  };
 
-export default function Header({ isLoggedIn }: HeaderProps) {
   return (
     <header className={styles.header}>
       <div className={styles.leftContainer}>
         <Link href="/">
           <div className={styles.logoContainer}>
-            {/* Image é recomendado pelo next no lugar do img */}
             <Image
               src="/gitfica_icon.png"
               alt="GitFica Logo"
-              width={100}
-              height={100}
+              width={80}
+              height={80}
               className={styles.logoIcon}
             />
             <span>GitFica</span>
           </div>
         </Link>
 
-        <nav className={styles.navBar}>
-          <ul>
-            <li className={styles.navLinks}><Link href="/home">Métricas</Link></li>
-            <li className={styles.navLinks}><Link href="/missions">Missões</Link></li>
-            <li className={styles.navLinks}><Link href="#">Equipes</Link></li>
-          </ul>
-        </nav>
+        {isAuthenticated && (
+          <nav className={styles.navBar}>
+            <ul>
+              <li className={styles.navLinks}><Link href="/home">Métricas</Link></li>
+              <li className={styles.navLinks}><Link href="/missions">Missões</Link></li>
+              <li className={styles.navLinks}><Link href="#">Equipes</Link></li>
+            </ul>
+          </nav>
+        )}
       </div>
 
       <div className={styles.rightContainer}>
-        <span className={`material-symbols-outlined ${styles.icone}`}>notifications</span>
+        {isAuthenticated && (
+          <span className={`material-symbols-outlined ${styles.icone}`}>notifications</span>
+        )}
 
-        {/* Se não estiver logado, mostra "Entrar"; caso contrário, mostra link de Perfil ou Log out */}
-        {!isLoggedIn ? (
-          <Link href="/login" className={styles.enterButton}>
-            Entrar
-          </Link>
+        {!isAuthenticated ? (
+          <div 
+            className={styles.enterButton}
+            onClick={handleProfileClick}
+            style={{ cursor: 'pointer' }}
+          >
+            {isLoading ? 'Carregando...' : 'Entrar'}
+          </div>
         ) : (
-          <>
-            <Link href="/profile" className={styles.profileContainer}>
-              <span className="material-symbols-outlined">account_circle</span>
-              <span className={styles.profileText}>Meu Perfil</span>
-            </Link>
-          </>
+          <div 
+            className={styles.profileContainer}
+            onClick={handleProfileClick}
+            style={{ cursor: 'pointer' }}
+          >
+            <span className="material-symbols-outlined">account_circle</span>
+            <span className={styles.profileText}>
+              {user?.username || 'Usuário'}
+            </span>
+          </div>
         )}
       </div>
     </header>

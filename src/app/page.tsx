@@ -1,31 +1,41 @@
-'use client'
+'use client';
 
-import styles from './page.module.css'; // importando os estilos do arquivo page.module.css
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import styles from './page.module.css';
+import { useAuth } from '../hooks/useAuth';
 
-export default function Home() { // definir o componente principal da página
+export default function Home() {
+  const { isAuthenticated, isLoading, login } = useAuth();
+  const router = useRouter();
 
-  const handleGitHubLogin = () => {
-    const clientId = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID;
-    const redirectUri = `${window.location.origin}/api/auth/callback/github`;
+  useEffect(() => {
+    if (isAuthenticated && !isLoading) {
+      router.push('/profile');
+    }
+  }, [isAuthenticated, isLoading, router]);
 
-    const githubOAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=user:email`;
-
-    //window.location.href = githubOAuthUrl;
-
-    //mock: simula como se tivesse voltado do github
-    window.location.href = '/api/auth/callback/github?code=CODIGO_TESTE'
+  const handleLogin = () => {
+    login();
   };
 
-  
+  if (isLoading) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.card}>
+          <p>Carregando...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
-
-      {/* Terceira seção com login do GitHub */}
       <div className={styles.container}>
         <div className={styles.card}>
           <button 
             className={styles.button} 
-            onClick={handleGitHubLogin}
+            onClick={handleLogin}
           >
             <img src="/github_icon.png" alt="GitHub Logo" className={styles.icon} />
             <span>Logar com GitHub</span>

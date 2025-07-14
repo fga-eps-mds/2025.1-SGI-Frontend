@@ -2,14 +2,37 @@
 import styles from './metrics.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-
+import { motion } from 'framer-motion';
 
 export default function Home() {
 
+    const containerVariants = {
+      hidden: { opacity: 0 },
+      visible: {
+        opacity: 1,
+        transition: {
+          staggerChildren: 0.2, 
+        },
+      },
+    };
+    
+    const panelVariants = {
+      hidden: { opacity: 0, y: 20 },
+      visible: { opacity: 1, y: 0 },
+    };
+
     return(
-        <main className={styles.container}>
+        <motion.main 
+            className={styles.container}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+        >
       <div className={styles.topPanel}>
-        <section className={styles.leftPanel}>
+        <motion.section 
+            className={styles.leftPanel}
+            variants={panelVariants}
+        >
           <div className={styles.userCard}>
             <div >
               <Image src="/sample_profile.png" alt="Avatar" width={120} height={120} className={styles.profileImage} />
@@ -36,8 +59,12 @@ export default function Home() {
               <div><span className={`${styles.icon} material-symbols-outlined`}>rocket</span><span>Contribuidor VIP</span></div>
             </div>
           </div>
-        </section>
-          <section className={styles.rightPanel}>
+        </motion.section>
+
+          <motion.section 
+            className={styles.rightPanel}
+            variants={panelVariants}
+          >
             <div className={styles.containerMetrics}>
               <div className={styles.titleMetrics}><span className={`${styles.icon} material-symbols-outlined`}>dashboard</span> <h3> RESUMO</h3></div>
               <div className={styles.metrics}>
@@ -63,38 +90,11 @@ export default function Home() {
               <div className={styles.points}><span className={`${styles.icon} material-symbols-outlined`}>trophy</span> <p>Total de pontos: <strong>850</strong></p></div>
             </div>
                       <Link href="/metrics#statistics" className={styles.link}><div className={styles.statisticsScroll}> ESTATÍSTICAS GERAIS <span className={`material-symbols-outlined ${styles.iconRight}`}>arrow_downward</span></div></Link>  
-          </section>
+          </motion.section>
       </div>
       <div id='statistics' className={styles.bottomPanel}>
-        <div  className={styles.statisticCard}>
-          <h3 className={styles.statisticCardTitle}>COMMITS</h3>
-          <p className={styles.statisticCardContent}>Commits desde a criação da conta:</p>
-          <p className={styles.statisticCardContent}>Última semana:</p>
-          <p className={styles.statisticCardContent}>Repositório com mais commits:</p>
-        </div>
-        <div className={styles.statisticCard}>
-          <h3 className={styles.statisticCardTitle}>ISSUES</h3>
-          <p className={styles.statisticCardContent}>Issues cadastradas desde a criação da conta:</p>
-          <p className={styles.statisticCardContent}>Última semana:</p>
-          <p className={styles.statisticCardContent}>Repositório com mais issues cadastradas:</p>
-        </div>
-        <div className={styles.statisticCard}>
-          <h3 className={styles.statisticCardTitle}>MERGES</h3>
-          <p className={styles.statisticCardContent}>Merges desde a criação da conta:</p>
-          <p className={styles.statisticCardContent}>Última semana:</p>
-          <p className={styles.statisticCardContent}>Repositório com mais merges:</p>
-        </div>
-        <div className={styles.statisticCard}>
-          <h3 className={styles.statisticCardTitle}>PULL REQUESTS</h3>
-          <p className={styles.statisticCardContent}>Abertos:</p>
-          <p className={styles.statisticCardContent}>Última semana:</p>
-          <p className={styles.statisticCardContent}>Repositório com mais commits:</p>
-        </div>
-        <div className={styles.statisticCard}>
-          <h3 className={styles.statisticCardTitle}>TOTAL DE PONTOS</h3>
-        </div>
       </div>
 
-    </main>        
+    </motion.main>        
     );
 }

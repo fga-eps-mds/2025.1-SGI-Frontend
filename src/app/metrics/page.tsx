@@ -13,7 +13,7 @@ export default function Home() {
       visible: {
         opacity: 1,
         transition: {
-          staggerChildren: 0.1,
+          staggerChildren: 0.04,
         },
       },
     };
@@ -113,19 +113,19 @@ export default function Home() {
                 <MotionLink href={"/metrics/commits"} className={styles.linkCard} variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}  layoutId="commits-card-container">
                     <div> <span className={`${styles.icon} material-symbols-outlined`}>commit</span>Total de commits: <strong className={styles.quantityMetric}>120</strong></div>
                 </MotionLink>
-                <MotionLink href={"/metrics/openPRs"} className={styles.linkCard} variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
+                <MotionLink href={"/metrics/openPRs"} className={styles.linkCard} variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }} layoutId="openPRs-card-container">
                     <div> <span className={`${styles.icon} material-symbols-outlined`}>graph_1</span>Total de pull requests abertos: <strong className={styles.quantityMetric}>8</strong></div>
                 </MotionLink>
-                <MotionLink href={"/metrics/issues"} className={styles.linkCard} variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
+                <MotionLink href={"/metrics/issues"} className={styles.linkCard} variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }} layoutId="issues-card-container">
                     <div> <span className={`${styles.icon} material-symbols-outlined`}>error</span>Total de issues abertas: <strong className={styles.quantityMetric}>15</strong></div>
                 </MotionLink>
-                <MotionLink href={"/metrics/PRsdone"} className={styles.linkCard} variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
+                <MotionLink href={"/metrics/PRsdone"} className={styles.linkCard} variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }} layoutId="PRsdone-card-container">
                     <div> <span className={`${styles.icon} material-symbols-outlined`}>task</span>Total de PRs de terceiros fechados: <strong className={styles.quantityMetric}>5</strong></div>
                 </MotionLink>
-                <MotionLink href={"/metrics/PRsclosed"} className={styles.linkCard} variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
+                <MotionLink href={"/metrics/PRsclosed"} className={styles.linkCard} variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }} layoutId="PRsclosed-card-container">
                     <div> <span className={`${styles.icon} material-symbols-outlined`}>task_alt</span>Total de PRs resolvidos por terceiros: <strong className={styles.quantityMetric}>4</strong></div>
                 </MotionLink>
-                <MotionLink href={"/metrics/merges"} className={styles.linkCard} variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
+                <MotionLink href={"/metrics/merges"} className={styles.linkCard} variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }} layoutId="merges-card-container">
                     <div> <span className={`${styles.icon} material-symbols-outlined`}>merge</span>Total de merges: <strong className={styles.quantityMetric}>11</strong></div>
                 </MotionLink>
               </div>

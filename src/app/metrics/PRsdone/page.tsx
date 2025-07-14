@@ -4,7 +4,7 @@ import styles from './PRsdone.module.css'
 import Link from 'next/link'
 import { motion } from 'framer-motion' 
 
-export default function Commits(){
+export default function PRsdone(){
 
     const containerVariants = {
       hidden: { opacity: 0 },
@@ -39,7 +39,7 @@ export default function Commits(){
     return(
         <motion.main 
           className={styles.container}
-          layoutId="commits-card-container"
+          layoutId="PRsdone-card-container"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.3 } }}
@@ -58,7 +58,7 @@ export default function Commits(){
                         </div>
                     </Link>
                     <div className={styles.titleDiv}>
-                        <h1> COMMITS REALIZADAS</h1>
+                        <h1> PRS DE TERCEIROS FECHADOS</h1>
                     </div>
                 </motion.div>
                 

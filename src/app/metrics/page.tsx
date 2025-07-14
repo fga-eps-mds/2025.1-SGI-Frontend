@@ -59,7 +59,7 @@ export default function Home() {
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              transition={{ duration: 0.4, type: 'spring', stiffness: 150 }}
+              transition={{ duration: 0.2, type: 'spring', stiffness: 100 }}
             >
               <Image src="/sample_profile.png" alt="Avatar" width={120} height={120} className={styles.profileImage} />
             </motion.div>
@@ -70,7 +70,7 @@ export default function Home() {
                 className={styles.xpFill} 
                 initial={{ width: '0%' }}
                 animate={{ width: '39%' }}
-                transition={{ duration: 1, delay: 0.5 }}
+                transition={{ duration: 1, delay: 0.2 }}
               />
             </div>
             <div className={styles.xp}><span className={`material-symbols-outlined`}>star</span><p> Experiência: 390/1000</p></div>
@@ -91,7 +91,6 @@ export default function Home() {
                   className={ach.active ? styles.active : ''}
                   variants={itemVariants}
                   whileHover={{ scale: 1.05, color: '#fff' }}
-                  transition={{ type: 'spring', stiffness: 400 }}
                 >
                   <span className={`${styles.icon} material-symbols-outlined`}>{ach.icon}</span>
                   <span>{ach.text}</span>

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header/page";
 import { AuthProvider } from "../hooks/useAuth";
+import { LayoutGroup } from "framer-motion";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,7 +39,9 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable}`}>
         <AuthProvider>
           <Header />
+          <LayoutGroup>
           {children}
+          </LayoutGroup>
         </AuthProvider>
       </body>
     </html>

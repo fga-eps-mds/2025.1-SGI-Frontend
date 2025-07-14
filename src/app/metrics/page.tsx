@@ -22,10 +22,10 @@ export default function Home() {
     };
 
     const achievementsData = [
-      { active: false, icon: 'filter_1', text: 'Primeiro PR' },
-      { active: false, icon: 'commit', text: '100 Commits' },
+      { active: true, icon: 'filter_1', text: 'Primeiro PR' },
+      { active: true, icon: 'commit', text: '100 Commits' },
       { active: false, icon: 'groups', text: 'Líder de Equipe' },
-      { active: false, icon: 'bug_report', text: 'Caçador de Bugs' },
+      { active: true, icon: 'bug_report', text: 'Caçador de Bugs' },
       { active: false, icon: 'star_shine', text: 'Estrela do Mês' },
       { active: false, icon: 'rocket', text: 'Contribuidor VIP' },
     ];
@@ -92,30 +92,45 @@ export default function Home() {
             className={styles.rightPanel}
             variants={itemVariants}
           >
-            <div className={styles.containerMetrics}>
+            <motion.div 
+                className={styles.containerMetrics}
+                variants={containerVariants}
+            >
               <div className={styles.titleMetrics}><span className={`${styles.icon} material-symbols-outlined`}>dashboard</span> <h3> RESUMO</h3></div>
               <div className={styles.metrics}>
-                <Link href={"/metrics/commits"} className={styles.linkCard}>
-                  <div> <span className={`${styles.icon} material-symbols-outlined`}>commit</span>Total de commits: <strong className={styles.quantityMetric}>120</strong></div>
-                </Link>
-                <Link href={"/metrics/openPRs"} className={styles.linkCard}>
-                  <div> <span className={`${styles.icon} material-symbols-outlined`}>graph_1</span>Total de pull requests abertos: <strong className={styles.quantityMetric}>8</strong></div>
-                </Link>
-                <Link href={"/metrics/issues"} className={styles.linkCard}>
-                  <div> <span className={`${styles.icon} material-symbols-outlined`}>error</span>Total de issues abertas: <strong className={styles.quantityMetric}>15</strong></div>
-                </Link>
-                <Link href={"/metrics/PRsdone"} className={styles.linkCard}>
-                  <div> <span className={`${styles.icon} material-symbols-outlined`}>task</span>Total de PRs de terceiros fechados: <strong className={styles.quantityMetric}>5</strong></div>
-                </Link>
-                <Link href={"/metrics/PRsclosed"} className={styles.linkCard}>
-                  <div> <span className={`${styles.icon} material-symbols-outlined`}>task_alt</span>Total de PRs resolvidos por terceiros: <strong className={styles.quantityMetric}>4</strong></div>
-                </Link>
-                <Link href={"/metrics/merges"} className={styles.linkCard}>
-                  <div> <span className={`${styles.icon} material-symbols-outlined`}>merge</span>Total de merges: <strong className={styles.quantityMetric}>11</strong></div>
-                </Link>
+                <motion.div variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
+                  <Link href={"/metrics/commits"} className={styles.linkCard}>
+                    <div> <span className={`${styles.icon} material-symbols-outlined`}>commit</span>Total de commits: <strong className={styles.quantityMetric}>120</strong></div>
+                  </Link>
+                </motion.div>
+                <motion.div variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
+                  <Link href={"/metrics/openPRs"} className={styles.linkCard}>
+                    <div> <span className={`${styles.icon} material-symbols-outlined`}>graph_1</span>Total de pull requests abertos: <strong className={styles.quantityMetric}>8</strong></div>
+                  </Link>
+                </motion.div>
+                <motion.div variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
+                  <Link href={"/metrics/issues"} className={styles.linkCard}>
+                    <div> <span className={`${styles.icon} material-symbols-outlined`}>error</span>Total de issues abertas: <strong className={styles.quantityMetric}>15</strong></div>
+                  </Link>
+                </motion.div>
+                <motion.div variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
+                  <Link href={"/metrics/PRsdone"} className={styles.linkCard}>
+                    <div> <span className={`${styles.icon} material-symbols-outlined`}>task</span>Total de PRs de terceiros fechados: <strong className={styles.quantityMetric}>5</strong></div>
+                  </Link>
+                </motion.div>
+                <motion.div variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
+                  <Link href={"/metrics/PRsclosed"} className={styles.linkCard}>
+                    <div> <span className={`${styles.icon} material-symbols-outlined`}>task_alt</span>Total de PRs resolvidos por terceiros: <strong className={styles.quantityMetric}>4</strong></div>
+                  </Link>
+                </motion.div>
+                <motion.div variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
+                  <Link href={"/metrics/merges"} className={styles.linkCard}>
+                    <div> <span className={`${styles.icon} material-symbols-outlined`}>merge</span>Total de merges: <strong className={styles.quantityMetric}>11</strong></div>
+                  </Link>
+                </motion.div>
               </div>
               <div className={styles.points}><span className={`${styles.icon} material-symbols-outlined`}>trophy</span> <p>Total de pontos: <strong>850</strong></p></div>
-            </div>
+            </motion.div>
                       <Link href="/metrics#statistics" className={styles.link}><div className={styles.statisticsScroll}> ESTATÍSTICAS GERAIS <span className={`material-symbols-outlined ${styles.iconRight}`}>arrow_downward</span></div></Link>  
           </motion.section>
       </div>

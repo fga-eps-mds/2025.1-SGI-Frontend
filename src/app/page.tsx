@@ -1,17 +1,41 @@
-'use client'
+'use client';
 
-import styles from './page.module.css'; // importando os estilos do arquivo page.module.css
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import styles from './page.module.css';
+import { useAuth } from '../hooks/useAuth';
 
-export default function Home() { // definir o componente principal da página 
+export default function Home() {
+  const { isAuthenticated, isLoading, login } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isAuthenticated && !isLoading) {
+      router.push('/profile');
+    }
+  }, [isAuthenticated, isLoading, router]);
+
+  const handleLogin = () => {
+    login();
+  };
+
+  if (isLoading) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.card}>
+          <p>Carregando...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
-
-      {/* Terceira seção com login do GitHub */}
       <div className={styles.container}>
         <div className={styles.card}>
           <button 
             className={styles.button} 
-            onClick={() => window.location.href = 'https://github.com/'}
+            onClick={handleLogin}
           >
             <img src="/github_icon.png" alt="GitHub Logo" className={styles.icon} />
             <span>Logar com GitHub</span>

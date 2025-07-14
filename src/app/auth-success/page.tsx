@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../../hooks/useAuth';
 
-export default function AuthSuccessPage() {
+function AuthSuccessContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { refreshProfile } = useAuth();
@@ -17,7 +17,7 @@ export default function AuthSuccessPage() {
       try {
         console.log('=== AUTH SUCCESS - Iniciando processamento ===');
         console.log('URL atual:', window.location.href);
-        console.log('SearchParams:', searchParams.toString());
+        console.log('SearchParams:', searchParams?.toString() || 'null');
         
         timeoutId = setTimeout(() => {
           console.log('Timeout atingido, redirecionando...');
@@ -25,10 +25,10 @@ export default function AuthSuccessPage() {
           router.replace('/profile');
         }, 5000);
         
-        const accessToken = searchParams.get('access_token');
-        const refreshToken = searchParams.get('refresh_token');
-        const username = searchParams.get('username');
-        const email = searchParams.get('email');
+        const accessToken = searchParams?.get('access_token');
+        const refreshToken = searchParams?.get('refresh_token');
+        const username = searchParams?.get('username');
+        const email = searchParams?.get('email');
 
         console.log('Tokens encontrados:', {
           accessToken: accessToken ? accessToken.substring(0, 20) + '...' : 'ausente',
@@ -56,7 +56,7 @@ export default function AuthSuccessPage() {
             router.replace('/profile');
           }, 500);
         } else {
-          console.error('Parâmetros disponíveis:', Array.from(searchParams.entries()));
+          console.error('Parâmetros disponíveis:', searchParams ? Array.from(searchParams.entries()) : 'searchParams é null');
           clearTimeout(timeoutId);
           setError('Tokens não encontrados na URL');
           
@@ -81,7 +81,7 @@ export default function AuthSuccessPage() {
       if (timeoutId) clearTimeout(timeoutId);
       if (delayedStart) clearTimeout(delayedStart);
     };
-  }, [router, searchParams]);
+  }, [router, searchParams, refreshProfile]);
 
   return (
     <div style={{ 
@@ -138,5 +138,26 @@ export default function AuthSuccessPage() {
         }
       `}</style>
     </div>
+  );
+}
+
+export default function AuthSuccessPage() {
+  return (
+    <Suspense fallback={
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '100vh',
+        flexDirection: 'column',
+        backgroundColor: '#1E2432',
+        color: 'white',
+        fontFamily: 'var(--font-roboto), sans-serif'
+      }}>
+        <h2>Carregando...</h2>
+      </div>
+    }>
+      <AuthSuccessContent />
+    </Suspense>
   );
 }

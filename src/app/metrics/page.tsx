@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
+const MotionLink = motion(Link);
+
 export default function Home() {
 
     const containerVariants = {
@@ -98,36 +100,24 @@ export default function Home() {
             >
               <div className={styles.titleMetrics}><span className={`${styles.icon} material-symbols-outlined`}>dashboard</span> <h3> RESUMO</h3></div>
               <div className={styles.metrics}>
-                <motion.div variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
-                  <Link href={"/metrics/commits"} className={styles.linkCard}>
+                <MotionLink href={"/metrics/commits"} className={styles.linkCard} variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
                     <div> <span className={`${styles.icon} material-symbols-outlined`}>commit</span>Total de commits: <strong className={styles.quantityMetric}>120</strong></div>
-                  </Link>
-                </motion.div>
-                <motion.div variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
-                  <Link href={"/metrics/openPRs"} className={styles.linkCard}>
+                </MotionLink>
+                <MotionLink href={"/metrics/openPRs"} className={styles.linkCard} variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
                     <div> <span className={`${styles.icon} material-symbols-outlined`}>graph_1</span>Total de pull requests abertos: <strong className={styles.quantityMetric}>8</strong></div>
-                  </Link>
-                </motion.div>
-                <motion.div variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
-                  <Link href={"/metrics/issues"} className={styles.linkCard}>
+                </MotionLink>
+                <MotionLink href={"/metrics/issues"} className={styles.linkCard} variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
                     <div> <span className={`${styles.icon} material-symbols-outlined`}>error</span>Total de issues abertas: <strong className={styles.quantityMetric}>15</strong></div>
-                  </Link>
-                </motion.div>
-                <motion.div variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
-                  <Link href={"/metrics/PRsdone"} className={styles.linkCard}>
+                </MotionLink>
+                <MotionLink href={"/metrics/PRsdone"} className={styles.linkCard} variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
                     <div> <span className={`${styles.icon} material-symbols-outlined`}>task</span>Total de PRs de terceiros fechados: <strong className={styles.quantityMetric}>5</strong></div>
-                  </Link>
-                </motion.div>
-                <motion.div variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
-                  <Link href={"/metrics/PRsclosed"} className={styles.linkCard}>
+                </MotionLink>
+                <MotionLink href={"/metrics/PRsclosed"} className={styles.linkCard} variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
                     <div> <span className={`${styles.icon} material-symbols-outlined`}>task_alt</span>Total de PRs resolvidos por terceiros: <strong className={styles.quantityMetric}>4</strong></div>
-                  </Link>
-                </motion.div>
-                <motion.div variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
-                  <Link href={"/metrics/merges"} className={styles.linkCard}>
+                </MotionLink>
+                <MotionLink href={"/metrics/merges"} className={styles.linkCard} variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
                     <div> <span className={`${styles.icon} material-symbols-outlined`}>merge</span>Total de merges: <strong className={styles.quantityMetric}>11</strong></div>
-                  </Link>
-                </motion.div>
+                </MotionLink>
               </div>
               <div className={styles.points}><span className={`${styles.icon} material-symbols-outlined`}>trophy</span> <p>Total de pontos: <strong>850</strong></p></div>
             </motion.div>

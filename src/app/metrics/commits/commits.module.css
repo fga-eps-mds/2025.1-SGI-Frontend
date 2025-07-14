@@ -1,0 +1,92 @@
+.Top {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+.titleDiv {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.container {
+    font-family: var(--font-roboto), sans-serif;
+    min-height: 90vh;
+    color: white;
+    padding: 30px 40px;
+    width: 100%;
+    justify-content: center;
+}
+
+.backButtonDiv .icon {
+    font-size: 33px;
+}
+
+.backButtonDiv { 
+    font-size: 1.8rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+}
+
+.backButton {
+    margin-left: 4%;
+}
+
+.pageBody{
+    padding: 6% 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    background-color: #5f29f465;
+    border-radius: 18px;
+    padding: 10px 70px;
+    width: 70vw;
+    height: 120px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 70px;
+}
+.cardID {
+    text-align: right;
+}
+
+.cardIcon .icon {
+    font-size: 48px;
+}
+
+.cardXP{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.cardXP .icon {
+    font-size: 28px;
+}
+
+.cardXP p, .cardIdentifier p {
+    margin: 0;
+    padding-left: 8px;
+}
+
+.cardTitle{
+    font-size: 1.4rem;
+}

@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
 import { authService, UserProfile } from '../services/api';
 
@@ -31,16 +33,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const checkAuthStatus = async () => {
     try {
-      // Primeiro verificar se tem token salvo
       const hasToken = authService.isAuthenticated();
       
       if (hasToken) {
         try {
-          // Tentar verificar com a API
           const authCheck = await authService.checkAuth();
           if (authCheck.authenticated) {
             setIsAuthenticated(true);
-            // Buscar dados completos do perfil
             const profile = await authService.getUserProfile();
             setUser(profile);
           } else {
@@ -50,7 +49,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         } catch (error) {
           console.warn('API não disponível, mas token existe. Marcando como autenticado:', error);
           setIsAuthenticated(true);
-          // Criar um usuário básico com dados dos tokens
           setUser({
             username: 'Usuário',
             email: '',
@@ -104,27 +102,26 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };  const refreshProfile = async () => {
     try {
+      console.log('RefreshProfile: Iniciando...');
       setIsLoading(true);
       const hasToken = authService.isAuthenticated();
+      console.log('RefreshProfile: hasToken =', hasToken);
       
       if (hasToken) {
+        console.log('RefreshProfile: Token encontrado, marcando como autenticado');
+        setIsAuthenticated(true);
+        
         try {
-          const authCheck = await authService.checkAuth();
-          if (authCheck.authenticated) {
-            setIsAuthenticated(true);
-            const profile = await authService.getUserProfile();
-            setUser(profile);
-          } else {
-            setIsAuthenticated(false);
-            setUser(null);
-          }
+          console.log('RefreshProfile: Buscando dados do perfil...');
+          const profile = await authService.getUserProfile();
+          console.log('RefreshProfile: Perfil obtido:', profile.username);
+          setUser(profile);
         } catch (error) {
-          console.warn('API não disponível durante refresh, mas token existe:', error);
-          setIsAuthenticated(true);
+          console.warn('RefreshProfile: Erro ao buscar perfil, mas mantendo autenticado:', error);
           setUser({
-            username: 'Usuário',
+            username: 'Usuario',
             email: '',
-            name: 'Usuário',
+            name: 'Usuario',
             avatar_url: undefined,
             bio: undefined,
             public_repos: 0,
@@ -133,15 +130,17 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           });
         }
       } else {
+        console.log('RefreshProfile: Sem token, marcando como não autenticado');
         setIsAuthenticated(false);
         setUser(null);
       }
     } catch (error) {
-      console.error('Erro ao atualizar perfil:', error);
+      console.error('RefreshProfile: Erro geral:', error);
       setIsAuthenticated(false);
       setUser(null);
     } finally {
       setIsLoading(false);
+      console.log('RefreshProfile: Finalizado');
     }
   };
 

@@ -104,3 +104,21 @@
 .icone:hover{
   cursor:pointer;
 }
+
+.logoutButton {
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #FFFFFF;
+  cursor: pointer;
+  background-color: #5F29F4;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 0.9rem;
+  margin-left: 10px;
+}
+
+.logoutButton:hover {
+  background-color: #4B21C6;
+  transform: scale(1.05);
+}

@@ -34,13 +34,22 @@ export default function Home() {
             variants={panelVariants}
         >
           <div className={styles.userCard}>
-            <div >
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.4, type: 'spring', stiffness: 120  }}
+            >
               <Image src="/sample_profile.png" alt="Avatar" width={120} height={120} className={styles.profileImage} />
-            </div>
+            </motion.div>
             <h2>nome usuário</h2>
             <p className={styles.rank}> Mestre dos Pull Requests</p>
             <div className={styles.xpBar}>
-              <div className={styles.xpFill} style={{ width: '39%' }}></div>
+              <motion.div 
+                className={styles.xpFill} 
+                initial={{ width: '0%' }}
+                animate={{ width: '39%' }}
+                transition={{ duration: 1, delay: 0.5 }}
+              />
             </div>
             <div className={styles.xp}><span className={`material-symbols-outlined`}>star</span><p> Experiência: 390/1000</p></div>
             <p> Nível 10</p>

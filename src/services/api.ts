@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'; // se não estiver salvo na env a url, vai usar o localhost
+// se não estiver salvo na env a url, vai usar o localhost
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'; 
 
 // Configurar axios instance
 const api = axios.create({
@@ -75,7 +76,7 @@ export const authService = {
     try {
       const response = await api.get('/api/auth/check/');
       return response.data;
-    } catch (error) {
+    } catch {
       return { authenticated: false };
     }
   },

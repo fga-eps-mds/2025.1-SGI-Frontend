@@ -1,4 +1,3 @@
-// api/auth/callback/github.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -46,8 +45,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         `/profile?token=${jwt}&username=${encodeURIComponent(username)}&email=${encodeURIComponent(email)}`
     );
 
-  } catch (err: any) {
-    console.error('[Callback GitHub Error]:', err.message || err);
+  } catch (err: unknown) {
+    console.error('[Callback GitHub Error]:', err instanceof Error ? err.message : err);
     res.status(500).json({ error: 'Erro no processo de autenticação' });
   }
 }

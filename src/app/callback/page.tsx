@@ -1,18 +1,17 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-// após o login do GitHub, o usuário será redirecionado para essa página com o código de autorização
-export default function CallbackPage() {
+function CallbackContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   useEffect(() => {
     const handleCallback = async () => {
       try {
-        const code = searchParams.get('code');
-        const error = searchParams.get('error');
+        const code = searchParams?.get('code');
+        const error = searchParams?.get('error');
 
         if (error) {
           console.error('Erro na autenticação GitHub:', error);
@@ -48,5 +47,23 @@ export default function CallbackPage() {
       <h2>Processando login...</h2>
       <p>Aguarde enquanto finalizamos seu login com GitHub.</p>
     </div>
+  );
+}
+
+export default function CallbackPage() {
+  return (
+    <Suspense fallback={
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '100vh',
+        flexDirection: 'column' 
+      }}>
+        <h2>Carregando...</h2>
+      </div>
+    }>
+      <CallbackContent />
+    </Suspense>
   );
 }

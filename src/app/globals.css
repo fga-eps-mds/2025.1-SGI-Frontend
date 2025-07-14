@@ -6,5 +6,5 @@
 
 html, body {
     background-color: #1E2432;
-    
+    font-family: var(--font-roboto), sans-serif;
 }

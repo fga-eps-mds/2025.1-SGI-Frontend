@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header/page";
+import { AuthProvider } from "../hooks/useAuth";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 const roboto = Roboto({
-  variable: "--font-roboto", // variável CSS para uso global
-  subsets:["latin"], // inclui apenas caracteres usados em idiomas ocidentais, reduzindo o tamanho da fonte
+  variable: "--font-roboto",
+  subsets:["latin"],
 })
 
 export const metadata: Metadata = {
@@ -30,9 +31,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Header/>
       <body className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable}`}>
-        {children}
+        <AuthProvider>
+          <Header/>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

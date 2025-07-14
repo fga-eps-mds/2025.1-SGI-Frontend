@@ -111,7 +111,7 @@ export default function Home() {
             >
               <div className={styles.titleMetrics}><span className={`${styles.icon} material-symbols-outlined`}>dashboard</span> <h3> RESUMO</h3></div>
               <div className={styles.metrics}>
-                <MotionLink href={"/metrics/commits"} className={styles.linkCard} variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>
+                <MotionLink href={"/metrics/commits"} className={styles.linkCard} variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}  layoutId="commits-card-container">
                     <div> <span className={`${styles.icon} material-symbols-outlined`}>commit</span>Total de commits: <strong className={styles.quantityMetric}>120</strong></div>
                 </MotionLink>
                 <MotionLink href={"/metrics/openPRs"} className={styles.linkCard} variants={itemVariants} whileHover={{ y: -5 }} whileTap={{ scale: 0.95 }}>

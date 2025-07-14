@@ -11,15 +11,24 @@ export default function Home() {
       visible: {
         opacity: 1,
         transition: {
-          staggerChildren: 0.2, 
+          staggerChildren: 0.1,
         },
       },
     };
     
-    const panelVariants = {
+    const itemVariants = {
       hidden: { opacity: 0, y: 20 },
       visible: { opacity: 1, y: 0 },
     };
+
+    const achievementsData = [
+      { active: false, icon: 'filter_1', text: 'Primeiro PR' },
+      { active: false, icon: 'commit', text: '100 Commits' },
+      { active: false, icon: 'groups', text: 'Líder de Equipe' },
+      { active: false, icon: 'bug_report', text: 'Caçador de Bugs' },
+      { active: false, icon: 'star_shine', text: 'Estrela do Mês' },
+      { active: false, icon: 'rocket', text: 'Contribuidor VIP' },
+    ];
 
     return(
         <motion.main 
@@ -31,13 +40,13 @@ export default function Home() {
       <div className={styles.topPanel}>
         <motion.section 
             className={styles.leftPanel}
-            variants={panelVariants}
+            variants={itemVariants}
         >
           <div className={styles.userCard}>
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              transition={{ duration: 0.4, type: 'spring', stiffness: 120  }}
+              transition={{ duration: 0.4, type: 'spring', stiffness: 150 }}
             >
               <Image src="/sample_profile.png" alt="Avatar" width={120} height={120} className={styles.profileImage} />
             </motion.div>
@@ -55,24 +64,33 @@ export default function Home() {
             <p> Nível 10</p>
           </div>
           <div className={styles.separationBar}></div>
-          <div className={styles.achievements}>
+          <motion.div 
+            className={styles.achievements}
+            variants={containerVariants}
+          >
             <div className={styles.achievementsTitle}>
               <span className={`${styles.icon} material-symbols-outlined`}>trophy</span><h3> Conquistas</h3>
             </div>
             <div className={styles.badges}>
-              <div  className={styles.active}><span className={`${styles.icon} material-symbols-outlined`}>filter_1</span><span>Primeiro PR</span></div>
-              <div  className={styles.active}><span className={`${styles.icon} material-symbols-outlined`}>commit</span><span>100 Commits</span></div>
-              <div><span className={`${styles.icon} material-symbols-outlined`}>groups</span><span>Líder de Equipe</span></div>
-              <div  className={styles.active}><span className={`${styles.icon} material-symbols-outlined`}>bug_report</span><span >Caçador de Bugs</span></div>
-              <div><span className={`${styles.icon} material-symbols-outlined`}>star_shine</span><span>Estrela do Mês</span></div>
-              <div><span className={`${styles.icon} material-symbols-outlined`}>rocket</span><span>Contribuidor VIP</span></div>
+              {achievementsData.map((ach, index) => (
+                <motion.div
+                  key={index}
+                  className={ach.active ? styles.active : ''}
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.05, color: '#fff' }}
+                  transition={{ type: 'spring', stiffness: 400 }}
+                >
+                  <span className={`${styles.icon} material-symbols-outlined`}>{ach.icon}</span>
+                  <span>{ach.text}</span>
+                </motion.div>
+              ))}
             </div>
-          </div>
+          </motion.div>
         </motion.section>
 
           <motion.section 
             className={styles.rightPanel}
-            variants={panelVariants}
+            variants={itemVariants}
           >
             <div className={styles.containerMetrics}>
               <div className={styles.titleMetrics}><span className={`${styles.icon} material-symbols-outlined`}>dashboard</span> <h3> RESUMO</h3></div>

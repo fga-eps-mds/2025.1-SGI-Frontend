@@ -17,6 +17,17 @@ export default function Home() {
         },
       },
     };
+
+    const bottomContainerVariants = {
+      hidden: { opacity: 0 },
+      visible: {
+        opacity: 1,
+        transition: {
+          delay: 0.5,
+          staggerChildren: 0.1,
+        },
+      },
+    };
     
     const itemVariants = {
       hidden: { opacity: 0, y: 20 },
@@ -24,10 +35,10 @@ export default function Home() {
     };
 
     const achievementsData = [
-      { active: true, icon: 'filter_1', text: 'Primeiro PR' },
-      { active: true, icon: 'commit', text: '100 Commits' },
+      { active: false, icon: 'filter_1', text: 'Primeiro PR' },
+      { active: false, icon: 'commit', text: '100 Commits' },
       { active: false, icon: 'groups', text: 'Líder de Equipe' },
-      { active: true, icon: 'bug_report', text: 'Caçador de Bugs' },
+      { active: false, icon: 'bug_report', text: 'Caçador de Bugs' },
       { active: false, icon: 'star_shine', text: 'Estrela do Mês' },
       { active: false, icon: 'rocket', text: 'Contribuidor VIP' },
     ];
@@ -124,8 +135,40 @@ export default function Home() {
                       <Link href="/metrics#statistics" className={styles.link}><div className={styles.statisticsScroll}> ESTATÍSTICAS GERAIS <span className={`material-symbols-outlined ${styles.iconRight}`}>arrow_downward</span></div></Link>  
           </motion.section>
       </div>
-      <div id='statistics' className={styles.bottomPanel}>
-      </div>
+
+      <motion.div 
+        id='statistics' 
+        className={styles.bottomPanel}
+        variants={bottomContainerVariants}
+      >
+        <motion.div variants={itemVariants} className={styles.statisticCard}>
+          <h3 className={styles.statisticCardTitle}>COMMITS</h3>
+          <p className={styles.statisticCardContent}>Commits desde a criação da conta:</p>
+          <p className={styles.statisticCardContent}>Última semana:</p>
+          <p className={styles.statisticCardContent}>Repositório com mais commits:</p>
+        </motion.div>
+        <motion.div variants={itemVariants} className={styles.statisticCard}>
+          <h3 className={styles.statisticCardTitle}>ISSUES</h3>
+          <p className={styles.statisticCardContent}>Issues cadastradas desde a criação da conta:</p>
+          <p className={styles.statisticCardContent}>Última semana:</p>
+          <p className={styles.statisticCardContent}>Repositório com mais issues cadastradas:</p>
+        </motion.div>
+        <motion.div variants={itemVariants} className={styles.statisticCard}>
+          <h3 className={styles.statisticCardTitle}>MERGES</h3>
+          <p className={styles.statisticCardContent}>Merges desde a criação da conta:</p>
+          <p className={styles.statisticCardContent}>Última semana:</p>
+          <p className={styles.statisticCardContent}>Repositório com mais merges:</p>
+        </motion.div>
+        <motion.div variants={itemVariants} className={styles.statisticCard}>
+          <h3 className={styles.statisticCardTitle}>PULL REQUESTS</h3>
+          <p className={styles.statisticCardContent}>Abertos:</p>
+          <p className={styles.statisticCardContent}>Última semana:</p>
+          <p className={styles.statisticCardContent}>Repositório com mais commits:</p>
+        </motion.div>
+        <motion.div variants={itemVariants} className={styles.statisticCard}>
+          <h3 className={styles.statisticCardTitle}>TOTAL DE PONTOS</h3>
+        </motion.div>
+      </motion.div>
 
     </motion.main>        
     );

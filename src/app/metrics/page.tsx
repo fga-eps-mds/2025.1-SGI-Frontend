@@ -35,15 +35,16 @@ export default function Home() {
     };
 
     const achievementsData = [
-      { active: false, icon: 'filter_1', text: 'Primeiro PR' },
-      { active: false, icon: 'commit', text: '100 Commits' },
-      { active: false, icon: 'groups', text: 'Líder de Equipe' },
-      { active: false, icon: 'bug_report', text: 'Caçador de Bugs' },
-      { active: false, icon: 'star_shine', text: 'Estrela do Mês' },
-      { active: false, icon: 'rocket', text: 'Contribuidor VIP' },
+      { id: 'ach1',   active: false, icon: 'filter_1', text: 'Primeiro PR', description: 'Faça seu primeiro PR na sua conta do github.' },
+      { id: 'ach2',   active: false, icon: 'commit', text: '100 Commits', description: 'Alcance a marca de 100 commits na sua conta do github.' },
+      { id: 'ach3',   active: false, icon: 'groups', text: 'Líder de Equipe', description: 'Tenha o cargo de líder de uma equipe no GitFica.' },
+      { id: 'ach4',   active: false, icon: 'bug_report', text: 'Caçador de Bugs', description: 'Resolva 10 issues classificadas como "bugs" com seus Pull Requests.' },
+      { id: 'ach5',   active: false, icon: 'star_shine', text: 'Estrela do Mês', description: 'Seja o contribuidor com mais pontos em um único mês.' },
+      { id: 'ach6',   active: false, icon: 'rocket', text: 'Contribuidor VIP', description: 'Contribua para um projeto por 3 meses consecutivos' },
     ];
 
     return(
+      <>
         <motion.main 
             className={styles.container}
             variants={containerVariants}
@@ -85,9 +86,11 @@ export default function Home() {
               <span className={`${styles.icon} material-symbols-outlined`}>trophy</span><h3> Conquistas</h3>
             </div>
             <div className={styles.badges}>
-              {achievementsData.map((ach, index) => (
+              {achievementsData.map((ach) => (
                 <motion.div
-                  key={index}
+                  key={ach.id}
+                  layoutId={ach.id} 
+                  onClick={() => setSelectedAchievementId(ach.id)}
                   className={ach.active ? styles.active : ''}
                   variants={itemVariants}
                   whileHover={{ scale: 1.05, color: '#fff' }}
@@ -169,6 +172,32 @@ export default function Home() {
         </motion.div>
       </motion.div>
 
-    </motion.main>        
+    </motion.main>    
+    <AnimatePresence>
+                {selectedAchievementId && selectedAchievement && (
+                    <>
+                        <div className={styles.modalContainer}>
+                          <motion.div
+                            className={styles.modalBackdrop}
+                            onClick={() => setSelectedAchievementId('')}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                        />
+                            <motion.div className={styles.modalContent} layoutId={selectedAchievementId}>
+                                <motion.button className={styles.closeButton} onClick={() => setSelectedAchievementId('')}>
+                                    <span className="material-symbols-outlined">close</span>
+                                </motion.button>
+                                <motion.div className={styles.modalIcon}>
+                                    <span className={`${styles.icon} material-symbols-outlined`}>{selectedAchievement.icon}</span>
+                                </motion.div>
+                                <motion.h2>{selectedAchievement.text}</motion.h2>
+                                <motion.p>{selectedAchievement.description}</motion.p>
+                            </motion.div>
+                        </div>
+                    </>
+                )}
+            </AnimatePresence>
+            </>    
     );
 }

@@ -53,9 +53,14 @@ export default function Commits(){
             >
                 <motion.div variants={itemVariants} className={styles.Top}>
                     <Link href="/metrics" className={styles.link}>
-                        <div className={styles.backButtonDiv}>
-                            <span className={`${styles.icon} material-symbols-outlined`}>arrow_back</span> <p className={styles.BackButton}> Voltar</p>
-                        </div>
+                        <motion.div 
+                            className={styles.backButtonDiv} 
+                            whileHover={{ scale: 1.1 }}
+                            transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                        >
+                            <span className={`${styles.icon} material-symbols-outlined`}>arrow_back</span> 
+                            <p className={styles.BackButton}> Voltar</p>
+                        </motion.div>
                     </Link>
                     <div className={styles.titleDiv}>
                         <h1> ISSUES ABERTAS</h1>

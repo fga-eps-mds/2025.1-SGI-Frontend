@@ -6,16 +6,25 @@ import { useRouter, useSearchParams } from 'next/navigation';
 function CallbackContent() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [hasProcessed, setHasProcessed] = useState(false);
   
   const router = useRouter();
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && !hasProcessed) {
       const handleCallback = async () => {
         try {
           const code = searchParams?.get('code');
           const errorParam = searchParams?.get('error');
+
+          const processedCode = sessionStorage.getItem('processed_code');
+          if (processedCode === code) {
+            console.log('Código já foi processado, redirecionando...');
+            setError('Login já processado, redirecionando...');
+            setTimeout(() => router.push('/profile'), 1000);
+            return;
+          }
 
           if (errorParam) {
             console.error('Erro na autenticação GitHub:', errorParam);
@@ -30,6 +39,8 @@ function CallbackContent() {
           }
 
           setIsLoading(true);
+          setHasProcessed(true);
+          sessionStorage.setItem('processed_code', code);
 
           const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
           
@@ -41,7 +52,9 @@ function CallbackContent() {
           });
 
           if (!response.ok) {
-            throw new Error(`Erro na resposta: ${response.status}`);
+            const errorText = await response.text();
+            console.error('Erro na resposta do backend:', errorText);
+            throw new Error(`Erro na resposta: ${response.status} - ${errorText}`);
           }
 
           const data = await response.json();
@@ -52,7 +65,7 @@ function CallbackContent() {
               localStorage.setItem('refresh_token', data.refresh_token);
             }
             
-            console.log("Login bem-sucedido!", data);
+            sessionStorage.removeItem('processed_code');
             router.push('/profile');
           } else {
             throw new Error('Token não recebido');
@@ -62,12 +75,13 @@ function CallbackContent() {
           console.error('Erro no callback:', error);
           setError('Falha ao fazer login com o GitHub');
           setIsLoading(false);
+          setHasProcessed(false);
         }
       };
 
       handleCallback();
     }
-  }, [router, searchParams, isLoading]);
+  }, [router, searchParams, isLoading, hasProcessed]);
 
   return (
     <div style={{ 

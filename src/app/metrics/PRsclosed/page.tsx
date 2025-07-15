@@ -1,38 +1,16 @@
-'use client'
+'use client';
 
-import styles from './PRsclosed.module.css'
-import Link from 'next/link'
-import { motion }from '@/components/FramerMotion/client-motion' 
+import styles from './PRsclosed.module.css';
+import Link from 'next/link';
+import { motion } from '@/components/FramerMotion/client-motion';
+import { containerVariants, itemVariants } from '@/components/FramerMotion/motion-variants';
 
-export default function PRsclosed(){
-
-    const containerVariants = {
-      hidden: { opacity: 0 },
-      visible: {
-        opacity: 1,
-        transition: {
-          staggerChildren: 0.1,
-          delayChildren: 0.1 
-        },
-      },
-      exit: {
-        opacity: 0,
-        transition: {
-            duration: 0.2
-        }
-      }
-    };
-    
-    const itemVariants = {
-      hidden: { opacity: 0, y: 20 },
-      visible: { opacity: 1, y: 0 },
-    };
-
-    const commitsData = [
-        { id: 'c1a2b3d4', content: '#1 REFACTOR: MELHORIA NA AUTENTICAÇÃO', date: '12/07/2025', xp: 15 },
-        { id: 'e5f6g7h8', content: '#2 FIX: CORREÇÃO DE BUG NO HEADER', date: '11/07/2025', xp: 10 },
-        { id: 'i9j0k1l2', content: '#3 FEATURE: ADIÇÃO DE ANIMAÇÕES', date: '10/07/2025', xp: 25 },
-        { id: 'm3n4o5p6', content: '#4 DOCS: ATUALIZAÇÃO DO README', date: '09/07/2025', xp: 5 },
+export default function PRsclosed() {
+    const prsClosedData = [
+        { id: 'prc1a2b3d4', content: '#1 CLOSE: PR rejeitado por falta de testes', date: '12/07/2025', xp: 5 },
+        { id: 'prc5f6g7h8', content: '#2 CLOSE: PR duplicado', date: '11/07/2025', xp: 3 },
+        { id: 'prc9j0k1l2', content: '#3 CLOSE: Mudança de requisitos', date: '10/07/2025', xp: 8 },
+        { id: 'prc3n4o5p6', content: '#4 CLOSE: Conflitos não resolvidos', date: '09/07/2025', xp: 5 },
     ];
 
 
@@ -68,19 +46,19 @@ export default function PRsclosed(){
                 </motion.div>
                 
                 <div className={styles.pageBody}>
-                    {commitsData.map((commit) => (
-                        <motion.div key={commit.id} className={styles.card} variants={itemVariants}>
-                            <div className={styles.cardIcon}><span className={`${styles.icon} material-symbols-outlined`}>commit</span></div>
+                    {prsClosedData.map((pr) => (
+                        <motion.div key={pr.id} className={styles.card} variants={itemVariants}>
+                            <div className={styles.cardIcon}><span className={`${styles.icon} material-symbols-outlined`}>close</span></div>
                             <div className={styles.cardContent}>
-                                <div className={styles.cardTitle}><strong>{commit.content}</strong></div>
-                                <div className={styles.cardDate}>{commit.date}</div>
+                                <div className={styles.cardTitle}><strong>{pr.content}</strong></div>
+                                <div className={styles.cardDate}>{pr.date}</div>
                             </div>
                             <div className={styles.cardID}> 
                                 <div className={styles.cardXP}>
                                     <span className={`${styles.icon} material-symbols-outlined`}>trophy</span> 
-                                    <p>{commit.xp}XP</p>
+                                    <p>{pr.xp}XP</p>
                                 </div>
-                                <div className={styles.cardIdentifier}><p>{commit.id}</p></div>
+                                <div className={styles.cardIdentifier}><p>{pr.id}</p></div>
                             </div>
                         </motion.div>
                     ))}

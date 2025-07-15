@@ -1,33 +1,11 @@
-'use client'
+'use client';
 
-import styles from './commits.module.css'
-import Link from 'next/link'
-import { motion }from '@/components/FramerMotion/client-motion' 
+import styles from './commits.module.css';
+import Link from 'next/link';
+import { motion } from '@/components/FramerMotion/client-motion';
+import { containerVariants, itemVariants } from '@/components/FramerMotion/motion-variants';
 
-export default function Commits(){
-
-    const containerVariants = {
-      hidden: { opacity: 0 },
-      visible: {
-        opacity: 1,
-        transition: {
-          staggerChildren: 0.1,
-          delayChildren: 0.1 
-        },
-      },
-      exit: {
-        opacity: 0,
-        transition: {
-            duration: 0.2
-        }
-      }
-    };
-    
-    const itemVariants = {
-      hidden: { opacity: 0, y: 20 },
-      visible: { opacity: 1, y: 0 },
-    };
-
+export default function Commits() {
     const commitsData = [
         { id: 'c1a2b3d4', content: '#1 REFACTOR: MELHORIA NA AUTENTICAÇÃO', date: '12/07/2025', xp: 15 },
         { id: 'e5f6g7h8', content: '#2 FIX: CORREÇÃO DE BUG NO HEADER', date: '11/07/2025', xp: 10 },
@@ -35,8 +13,7 @@ export default function Commits(){
         { id: 'm3n4o5p6', content: '#4 DOCS: ATUALIZAÇÃO DO README', date: '09/07/2025', xp: 5 },
     ];
 
-
-    return(
+    return (
         <motion.main 
           className={styles.container}
           layoutId="commits-card-container"

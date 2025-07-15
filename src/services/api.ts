@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-// se não estiver salvo na env a url, vai usar o localhost
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL; 
 
-// Configurar axios instance
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
@@ -11,7 +9,6 @@ const api = axios.create({
   },
 });
 
-// Interceptor para adicionar token de autenticação automaticamente
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('access_token');
@@ -66,12 +63,6 @@ export interface AuthCheck {
 }
 
 export const authService = {
-  // Iniciar login com GitHub
-  initiateGitHubLogin: () => {
-    window.location.href = `${API_BASE_URL}/api/auth/github/`;
-  },
-
-  // Verificar se o usuário está autenticado
   checkAuth: async (): Promise<AuthCheck> => {
     try {
       const response = await api.get('/api/auth/check/');
@@ -81,19 +72,16 @@ export const authService = {
     }
   },
 
-  // Obter perfil do usuário
   getUserProfile: async (): Promise<UserProfile> => {
     const response = await api.get('/api/users/me/');
     return response.data;
   },
 
-  // Obter perfil público do GitHub
   getPublicProfile: async (username: string): Promise<UserProfile> => {
     const response = await api.get(`/api/users/${username}/`);
     return response.data;
   },
 
-  // Fazer logout
   logout: async (): Promise<void> => {
     try {
       await api.post('/api/auth/logout/');
@@ -106,7 +94,6 @@ export const authService = {
     }
   },
 
-  // Deletar conta
   deleteAccount: async (): Promise<void> => {
     await api.delete('/DELETE/api/users/me/');
     localStorage.removeItem('access_token');
@@ -114,18 +101,15 @@ export const authService = {
     window.location.href = '/';
   },
 
-  // Salvar tokens no localStorage
   saveTokens: (tokens: { access_token: string; refresh_token: string }) => {
     localStorage.setItem('access_token', tokens.access_token);
     localStorage.setItem('refresh_token', tokens.refresh_token);
   },
 
-  // Obter token do localStorage
   getAccessToken: () => {
     return localStorage.getItem('access_token');
   },
 
-  // Verificar se está logado
   isAuthenticated: () => {
     return !!localStorage.getItem('access_token');
   }

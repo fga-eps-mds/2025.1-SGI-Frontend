@@ -86,7 +86,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, [hasInitialized]);
 
   const login = () => {
-    authService.initiateGitHubLogin();
+    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+    window.location.href = `${API_BASE_URL}/api/auth/github/`;
   };
 
   const logout = async () => {

@@ -6,8 +6,8 @@
   font-family: var(--font-roboto);
   min-height: 100vh;
   background-color: #1E2432;
-  padding-left: 180px;
-  padding-top: 136px;
+  padding-left: 60px;
+  padding-top: 40px;
   padding-right: 120px;
   box-sizing: border-box;
 }
@@ -100,9 +100,9 @@
 .createPanel {
   position: absolute;
   top: 139px;
-  left: 680px;
+  left: 520px;
   bottom: 36px;
-  width: 1000px;
+  width: 800px;
   padding: 24px;
   background-color: #222838;
   border-radius: 8px;

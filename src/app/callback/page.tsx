@@ -25,7 +25,8 @@ function CallbackContent() {
           return;
         }
 
-        window.location.href = `http://localhost:8000/callback/?code=${code}`;
+        const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+        window.location.href = `${API_BASE_URL}/callback/?code=${code}`;
         
       } catch (error) {
         console.error('Erro no callback:', error);

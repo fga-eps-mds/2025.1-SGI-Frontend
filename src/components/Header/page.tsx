@@ -31,7 +31,7 @@ export default function Header({ isLoggedIn }: HeaderProps) {
           <ul>
             <li className={styles.navLinks}><Link href="/metrics">Métricas</Link></li>
             <li className={styles.navLinks}><Link href="#">Missões</Link></li>
-            <li className={styles.navLinks}><Link href="#">Equipes</Link></li>
+            <li className={styles.navLinks}><Link href="/teams">Equipes</Link></li>
           </ul>
         </nav>
       </div>

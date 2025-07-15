@@ -2,7 +2,7 @@
 import styles from './metrics.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion }from '@/components/FramerMotion/client-motion';
 
 const MotionLink = motion(Link);
 

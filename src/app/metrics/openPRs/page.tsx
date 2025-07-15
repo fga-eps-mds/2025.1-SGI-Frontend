@@ -2,7 +2,7 @@
 
 import styles from './openPRs.module.css'
 import Link from 'next/link'
-import { motion } from 'framer-motion' 
+import { motion }from '@/components/FramerMotion/client-motion' 
 
 export default function openPRs(){
 

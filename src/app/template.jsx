@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence }from '@/components/FramerMotion/client-motion';
 
 export default function Template({ children }) {
   return (

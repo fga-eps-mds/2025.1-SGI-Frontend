@@ -1,35 +1,33 @@
 'use client';
 
-import { useEffect, Suspense } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 function CallbackContent() {
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  
   const router = useRouter();
   const searchParams = useSearchParams();
 
   useEffect(() => {
     const handleCallback = async () => {
       try {
-        const code = searchParams?.get('code');
-        const error = searchParams?.get('error');
+        const errorParam = searchParams?.get('error');
 
-        if (error) {
-          console.error('Erro na autenticação GitHub:', error);
-          router.push('/?error=auth_failed');
+        if (errorParam) {
+          console.error('OAuth error:', errorParam);
+          setError('Erro na autenticação. Tente novamente.');
+          setIsLoading(false);
           return;
         }
 
-        if (!code) {
-          console.error('Código de autorização não encontrado');
-          router.push('/?error=no_code');
-          return;
-        }
-
-        window.location.href = `http://localhost:8000/callback/?code=${code}`;
+        console.log('Aguardando processamento do backend...');
         
-      } catch (error) {
-        console.error('Erro no callback:', error);
-        router.push('/?error=callback_failed');
+      } catch (err) {
+        console.error('Callback error:', err);
+        setError('Erro no processamento da autenticação.');
+        setIsLoading(false);
       }
     };
 
@@ -44,25 +42,43 @@ function CallbackContent() {
       height: '100vh',
       flexDirection: 'column' 
     }}>
-      <h2>Processando login...</h2>
-      <p>Aguarde enquanto finalizamos seu login com GitHub.</p>
+      {error ? (
+        <>
+          <h2>Erro na autenticação</h2>
+          <p>{error}</p>
+          <button 
+            onClick={() => router.push('/')}
+            style={{
+              marginTop: '20px',
+              padding: '10px 20px',
+              backgroundColor: '#0070f3',
+              color: 'white',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer'
+            }}
+          >
+            Voltar ao início
+          </button>
+        </>
+      ) : isLoading ? (
+        <>
+          <h2>Autenticando...</h2>
+          <p>Por favor aguarde enquanto processamos seu login.</p>
+        </>
+      ) : (
+        <>
+          <h2>Redirecionando...</h2>
+          <p>Preparando sua sessão...</p>
+        </>
+      )}
     </div>
   );
 }
 
 export default function CallbackPage() {
   return (
-    <Suspense fallback={
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        height: '100vh',
-        flexDirection: 'column' 
-      }}>
-        <h2>Carregando...</h2>
-      </div>
-    }>
+    <Suspense fallback={<div>Carregando...</div>}>
       <CallbackContent />
     </Suspense>
   );

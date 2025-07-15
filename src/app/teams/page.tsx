@@ -116,7 +116,16 @@ export default function EquipesPage() {
     setInviteEmail('');
     setShowInviteModal(false);
   };
-
+ const handleDeleteTeam = () => {
+  if (selectedTeamIndex === null) return;
+  if (!window.confirm('Tem certeza que deseja excluir esta equipe?')) return;
+  setTeams((prev) => {
+    const updated = [...prev];
+    updated.splice(selectedTeamIndex, 1);
+    return updated;
+  });
+  resetCreation();
+};
   const handleRemoveMember = (memberToRemove: string) => {
     if (selectedTeamIndex === null) return;
     setTeams((prev) => {
@@ -289,10 +298,14 @@ export default function EquipesPage() {
                   <span>Tornar Dono</span>
                 </button>
 
-                <button className={`${styles.actionButton} ${styles.delete}`}>
-                  <Image src="/teams/trash.svg" alt="Excluir" width={28} height={28} />
-                  <span>Excluir Equipe</span>
-                </button>
+                <button
+  className={`${styles.actionButton} ${styles.delete}`}
+  onClick={handleDeleteTeam}
+>
+  <Image src="/teams/trash.svg" alt="Excluir" width={28} height={28} />
+  <span>Excluir Equipe</span>
+</button>
+                
               </>
             )}
           </div>

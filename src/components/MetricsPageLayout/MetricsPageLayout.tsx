@@ -16,7 +16,9 @@ interface MetricsPageLayoutProps {
   title: string;
   layoutId: string;
   data: MetricItem[];
-  styles: any;
+  styles: {
+    readonly [key: string]: string;
+  };
   children?: ReactNode;
 }
 

@@ -31,8 +31,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<UserProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [hasInitialized, setHasInitialized] = useState(false);
+  
   const checkAuthStatus = async () => {
+    if (hasInitialized) return;
+    
     try {
+      console.log('CheckAuthStatus: Iniciando verificação...');
       const hasToken = authService.isAuthenticated();
       
       if (hasToken) {
@@ -42,6 +47,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             setIsAuthenticated(true);
             const profile = await authService.getUserProfile();
             setUser(profile);
+            console.log('CheckAuthStatus: Usuário autenticado e perfil carregado');
           } else {
             setIsAuthenticated(false);
             setUser(null);
@@ -70,12 +76,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setUser(null);
     } finally {
       setIsLoading(false);
+      setHasInitialized(true);
+      console.log('CheckAuthStatus: Finalizado');
     }
   };
 
   useEffect(() => {
     checkAuthStatus();
-  }, []);
+  }, [hasInitialized]);
 
   const login = () => {
     authService.initiateGitHubLogin();
@@ -103,7 +111,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };  const refreshProfile = async () => {
     try {
       console.log('RefreshProfile: Iniciando...');
-      setIsLoading(true);
       const hasToken = authService.isAuthenticated();
       console.log('RefreshProfile: hasToken =', hasToken);
       
@@ -139,7 +146,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setIsAuthenticated(false);
       setUser(null);
     } finally {
-      setIsLoading(false);
       console.log('RefreshProfile: Finalizado');
     }
   };

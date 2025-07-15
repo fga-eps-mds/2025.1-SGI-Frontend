@@ -1,41 +1,73 @@
 'use client';
 
-import { useEffect, Suspense } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 function CallbackContent() {
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  
   const router = useRouter();
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const handleCallback = async () => {
-      try {
-        const code = searchParams?.get('code');
-        const error = searchParams?.get('error');
+    if (!isLoading) {
+      const handleCallback = async () => {
+        try {
+          const code = searchParams?.get('code');
+          const errorParam = searchParams?.get('error');
 
-        if (error) {
-          console.error('Erro na autenticação GitHub:', error);
-          router.push('/?error=auth_failed');
-          return;
+          if (errorParam) {
+            console.error('Erro na autenticação GitHub:', errorParam);
+            setError('Erro na autenticação GitHub');
+            return;
+          }
+
+          if (!code) {
+            console.error('Código de autorização não encontrado');
+            setError('Código de autorização não encontrado');
+            return;
+          }
+
+          setIsLoading(true);
+
+          const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+          
+          const response = await fetch(`${API_BASE_URL}/callback/?code=${code}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error(`Erro na resposta: ${response.status}`);
+          }
+
+          const data = await response.json();
+          
+          if (data.access_token) {
+            localStorage.setItem('access_token', data.access_token);
+            if (data.refresh_token) {
+              localStorage.setItem('refresh_token', data.refresh_token);
+            }
+            
+            console.log("Login bem-sucedido!", data);
+            router.push('/profile');
+          } else {
+            throw new Error('Token não recebido');
+          }
+          
+        } catch (error) {
+          console.error('Erro no callback:', error);
+          setError('Falha ao fazer login com o GitHub');
+          setIsLoading(false);
         }
+      };
 
-        if (!code) {
-          console.error('Código de autorização não encontrado');
-          router.push('/?error=no_code');
-          return;
-        }
-
-        const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-        window.location.href = `${API_BASE_URL}/callback/?code=${code}`;
-        
-      } catch (error) {
-        console.error('Erro no callback:', error);
-        router.push('/?error=callback_failed');
-      }
-    };
-
-    handleCallback();
-  }, [router, searchParams]);
+      handleCallback();
+    }
+  }, [router, searchParams, isLoading]);
 
   return (
     <div style={{ 
@@ -45,8 +77,36 @@ function CallbackContent() {
       height: '100vh',
       flexDirection: 'column' 
     }}>
-      <h2>Processando login...</h2>
-      <p>Aguarde enquanto finalizamos seu login com GitHub.</p>
+      {error ? (
+        <>
+          <h2>Erro na autenticação</h2>
+          <p>{error}</p>
+          <button 
+            onClick={() => router.push('/')}
+            style={{
+              marginTop: '20px',
+              padding: '10px 20px',
+              backgroundColor: '#0070f3',
+              color: 'white',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer'
+            }}
+          >
+            Voltar ao início
+          </button>
+        </>
+      ) : isLoading ? (
+        <>
+          <h2>Autenticando...</h2>
+          <p>Por favor aguarde enquanto processamos seu login.</p>
+        </>
+      ) : (
+        <>
+          <h2>Redirecionando...</h2>
+          <p>Preparando sua sessão...</p>
+        </>
+      )}
     </div>
   );
 }

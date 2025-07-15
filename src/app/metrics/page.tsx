@@ -2,7 +2,8 @@
 import styles from './metrics.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion }from '@/components/FramerMotion/client-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence }from '@/components/FramerMotion/client-motion';
 
 const MotionLink = motion(Link);
 
@@ -42,6 +43,10 @@ export default function Home() {
       { id: 'ach5',   active: false, icon: 'star_shine', text: 'Estrela do Mês', description: 'Seja o contribuidor com mais pontos em um único mês.' },
       { id: 'ach6',   active: false, icon: 'rocket', text: 'Contribuidor VIP', description: 'Contribua para um projeto por 3 meses consecutivos' },
     ];
+
+
+    const [selectedAchievementId, setSelectedAchievementId] = useState('');
+    const selectedAchievement = selectedAchievementId ? achievementsData.find(ach => ach.id === selectedAchievementId) : null;
 
     return(
       <>
